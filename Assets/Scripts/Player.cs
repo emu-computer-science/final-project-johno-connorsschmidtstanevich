@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         float deltaX = Input.GetAxis("Horizontal");
         if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
-        _rb.AddForce(movement * acceleration);
+        _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
     private void FixedUpdate()
