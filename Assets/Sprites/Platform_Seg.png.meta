@@ -13,16 +13,16 @@ TextureImporter:
     second: Platform_2
   - first:
       213: 3088764825074828480
-    second: Platform 1_0
+    second: Platform_Seg_0
   - first:
       213: -6034294122377839018
-    second: Platform 1_0
+    second: Platform_Seg_0
   - first:
       213: -6920486741436939099
-    second: Platform 1_1
+    second: Platform_Seg_1
   - first:
       213: 8607584734962228455
-    second: Platform 1_2
+    second: Platform_Seg_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -180,7 +180,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Platform 1_0
+      name: Platform_Seg_0
       rect:
         serializedVersion: 2
         x: 0
@@ -188,7 +188,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Platform 1_1
+      name: Platform_Seg_1
       rect:
         serializedVersion: 2
         x: 16
@@ -209,7 +209,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Platform 1_2
+      name: Platform_Seg_2
       rect:
         serializedVersion: 2
         x: 32
@@ -230,7 +230,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
