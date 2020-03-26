@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Platform_Dyn
-  m_EditorClassIdentifier: Assembly-CSharp::PlatformTile
+  m_Script: {fileID: 11500000, guid: 742c66c515c8d474fb25e684659d78e4, type: 3}
+  m_Name: Platform
+  m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
@@ -39,4 +39,5 @@ MonoBehaviour:
   - {fileID: -6920486741436939099, guid: 60b96afc238fd374a8ad4eaf5fe1c2c3, type: 3}
   - {fileID: 8607584734962228455, guid: 60b96afc238fd374a8ad4eaf5fe1c2c3, type: 3}
   - {fileID: 1634817506463255955, guid: 60b96afc238fd374a8ad4eaf5fe1c2c3, type: 3}
-  m_Preview: {fileID: 0}
+  m_Preview: {fileID: 3088764825074828480, guid: 60b96afc238fd374a8ad4eaf5fe1c2c3,
+    type: 3}
