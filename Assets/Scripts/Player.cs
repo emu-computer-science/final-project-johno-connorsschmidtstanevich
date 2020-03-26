@@ -27,13 +27,10 @@ public class Player : MonoBehaviour
         {
             case 0:
                 return false;
-            break;
             case 1:
                 return Input.GetAxis("Horizontal") < 0;
-            break;
             case -1:
                 return Input.GetAxis("Horizontal") > 0;
-            break;
             default:
                 return false;
         }
