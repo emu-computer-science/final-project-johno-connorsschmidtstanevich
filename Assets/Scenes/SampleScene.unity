@@ -417,7 +417,7 @@ MonoBehaviour:
   acceleration: 10000
   maxSpeed: 1000000
   turnMult: 5
-  jumpForce: 1000
+  jumpForce: 5000
   speed: 0
 --- !u!95 &855617389
 Animator:
