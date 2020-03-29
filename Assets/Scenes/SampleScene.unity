@@ -20240,5 +20240,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8797519146867458391, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 02a8bc01a8cb73c4db856f4ccb2f1e8b,
+        type: 3}
+    - target: {fileID: 8797519146867458391, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797519146867458391, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Gameplay
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a125c20679f4f8f41bc6ccf9f536c7e4, type: 3}
