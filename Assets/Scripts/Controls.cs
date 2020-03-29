@@ -20,17 +20,17 @@ public class @Controls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""472f4836-0322-4584-933a-93498898e6bb"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Grapple"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""27f6a199-1992-44d1-a5e1-57b15754ef1d"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
