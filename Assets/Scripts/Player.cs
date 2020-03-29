@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     public float turnMult = 1.0f;
     public float jumpForce;
-    [SerializeField] public Controls _controls;
+
     [Header("Set Dynamically")] public float speed;
     
     private Rigidbody2D _rb;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Collider2D _collider;
     private static readonly int Grounded = Animator.StringToHash("Grounded");
 
-    
+    Controls _controls;
 
     private bool _IsGrounded;
     private bool IsGrounded
@@ -88,43 +88,44 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _controls = new Controls();
     }
 
     private void OnEnable()
     {
-        _controls.Gameplay.Movement.performed += HandleMovement;
+        _controls.Gameplay.Movement.performed += Movement;
         _controls.Gameplay.Movement.Enable();
 
-        _controls.Gameplay.Jump.performed += HandleJump;
+        _controls.Gameplay.Jump.performed += Jump;
         _controls.Gameplay.Jump.Enable();
 
-        _controls.Gameplay.Grapple.performed += HandleGrapple;
+        _controls.Gameplay.Grapple.performed += Grapple;
         _controls.Gameplay.Grapple.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Gameplay.Movement.performed -= HandleMovement;
+        _controls.Gameplay.Movement.performed -= Movement;
         _controls.Gameplay.Movement.Disable();
 
-        _controls.Gameplay.Jump.performed -= HandleJump;
+        _controls.Gameplay.Jump.performed -= Jump;
         _controls.Gameplay.Jump.Disable();
 
-        _controls.Gameplay.Grapple.performed -= HandleGrapple;
+        _controls.Gameplay.Grapple.performed -= Grapple;
         _controls.Gameplay.Grapple.Disable();
     }
 
-    private void HandleMovement(InputAction.CallbackContext context)
+    private void Movement(InputAction.CallbackContext context)
     {
         Debug.Log("Move");
     }
 
-    private void HandleJump(InputAction.CallbackContext context)
+    private void Jump(InputAction.CallbackContext context)
     {
         Debug.Log("Jump");
     }
 
-    private void HandleGrapple(InputAction.CallbackContext context)
+    private void Grapple(InputAction.CallbackContext context)
     {
         Debug.Log("Grapple");
     }
