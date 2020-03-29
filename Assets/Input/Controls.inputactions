@@ -26,7 +26,7 @@
                     "type": "Value",
                     "id": "64d4d884-4fbe-4e7e-973d-a15f697455f2",
                     "expectedControlType": "Axis",
-                    "processors": "",
+                    "processors": "AxisDeadzone",
                     "interactions": ""
                 }
             ],
@@ -55,11 +55,22 @@
                 },
                 {
                     "name": "",
-                    "id": "b7ef2581-503b-496b-806f-1bb6c383102a",
+                    "id": "fcd92087-9fce-4553-8c84-9dbd63eb31f2",
                     "path": "<Gamepad>/leftStick/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Default",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31b0ba96-c094-4ca5-b3d7-5c664173c1de",
+                    "path": "<Gamepad>/dpad/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false

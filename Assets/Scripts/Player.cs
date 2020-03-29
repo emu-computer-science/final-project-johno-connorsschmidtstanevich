@@ -118,7 +118,16 @@ public class Player : MonoBehaviour
     private void Movement(InputAction.CallbackContext context)
     {
         Debug.Log("Move");
+        float deltaX = context.ReadValue<float>();
+        joyPos = deltaX;
+        if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
+        Vector2 movement = new Vector2(deltaX, 0.0f);
+        _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
+
+    public float joyPos;
+
+    public float joyPos2;
 
     private void Jump(InputAction.CallbackContext context)
     {
@@ -133,11 +142,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal");
-        if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
-        Vector2 movement = new Vector2(deltaX, 0.0f);
-        _rb.AddForce(movement * (acceleration * Time.deltaTime));
+        // float deltaX = Input.GetAxis("Horizontal");
+        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
+        // Vector2 movement = new Vector2(deltaX, 0.0f);
+        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
+
+        joyPos2 = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Jump"))
         {
