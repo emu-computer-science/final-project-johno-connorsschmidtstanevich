@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
 
     public float JoyPosX => _joyPosX;
 
-    public float joyPos2;
+    // public float joyPos2;
 
     private void Jump(InputAction.CallbackContext context)
     {
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
 
-        joyPos2 = Input.GetAxis("Horizontal");
+        // joyPos2 = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Jump"))
         {
