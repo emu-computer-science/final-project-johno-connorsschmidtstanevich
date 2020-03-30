@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private Collider2D _collider;
     private static readonly int Grounded = Animator.StringToHash("Grounded");
+    private float _joyPosX;
 
     Controls _controls;
 
@@ -117,15 +118,15 @@ public class Player : MonoBehaviour
 
     private void Movement(InputAction.CallbackContext context)
     {
-        Debug.Log("Move");
-        float deltaX = context.ReadValue<float>();
-        joyPos = deltaX;
-        if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
-        Vector2 movement = new Vector2(deltaX, 0.0f);
-        _rb.AddForce(movement * (acceleration * Time.deltaTime));
+        // Debug.Log("Move");
+        _joyPosX = context.ReadValue<float>();
+        // joyPos = _joyPosX;
+        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
+        // Vector2 movement = new Vector2(deltaX, 0.0f);
+        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
-    public float joyPos;
+    public float JoyPosX => _joyPosX;
 
     public float joyPos2;
 
@@ -143,9 +144,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         // float deltaX = Input.GetAxis("Horizontal");
-        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
-        // Vector2 movement = new Vector2(deltaX, 0.0f);
-        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
+        float deltaX = _joyPosX;
+        if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
+        Vector2 movement = new Vector2(deltaX, 0.0f);
+        _rb.AddForce(movement * (acceleration * Time.deltaTime));
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
 
         joyPos2 = Input.GetAxis("Horizontal");
