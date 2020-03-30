@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     public float turnMult = 1.0f;
     public float jumpForce;
-    [SerializeField] public Controls _controls;
+
     [Header("Set Dynamically")] public float speed;
     
     private Rigidbody2D _rb;
@@ -20,8 +20,9 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private Collider2D _collider;
     private static readonly int Grounded = Animator.StringToHash("Grounded");
+    private float _joyPosX;
 
-    
+    Controls _controls;
 
     private bool _IsGrounded;
     private bool IsGrounded
@@ -88,43 +89,53 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _controls = new Controls();
     }
 
     private void OnEnable()
     {
-        _controls.Gameplay.Movement.performed += HandleMovement;
+        _controls.Gameplay.Movement.performed += Movement;
         _controls.Gameplay.Movement.Enable();
 
-        _controls.Gameplay.Jump.performed += HandleJump;
+        _controls.Gameplay.Jump.performed += Jump;
         _controls.Gameplay.Jump.Enable();
 
-        _controls.Gameplay.Grapple.performed += HandleGrapple;
+        _controls.Gameplay.Grapple.performed += Grapple;
         _controls.Gameplay.Grapple.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Gameplay.Movement.performed -= HandleMovement;
+        _controls.Gameplay.Movement.performed -= Movement;
         _controls.Gameplay.Movement.Disable();
 
-        _controls.Gameplay.Jump.performed -= HandleJump;
+        _controls.Gameplay.Jump.performed -= Jump;
         _controls.Gameplay.Jump.Disable();
 
-        _controls.Gameplay.Grapple.performed -= HandleGrapple;
+        _controls.Gameplay.Grapple.performed -= Grapple;
         _controls.Gameplay.Grapple.Disable();
     }
 
-    private void HandleMovement(InputAction.CallbackContext context)
+    private void Movement(InputAction.CallbackContext context)
     {
-        Debug.Log("Move");
+        // Debug.Log("Move");
+        _joyPosX = context.ReadValue<float>();
+        // joyPos = _joyPosX;
+        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
+        // Vector2 movement = new Vector2(deltaX, 0.0f);
+        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
-    private void HandleJump(InputAction.CallbackContext context)
+    public float JoyPosX => _joyPosX;
+
+    // public float joyPos2;
+
+    private void Jump(InputAction.CallbackContext context)
     {
         Debug.Log("Jump");
     }
 
-    private void HandleGrapple(InputAction.CallbackContext context)
+    private void Grapple(InputAction.CallbackContext context)
     {
         Debug.Log("Grapple");
     }
@@ -132,11 +143,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal");
+        // float deltaX = Input.GetAxis("Horizontal");
+        float deltaX = _joyPosX;
         if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
+
+        // joyPos2 = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Jump"))
         {

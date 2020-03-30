@@ -20,17 +20,17 @@ public class @Controls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""472f4836-0322-4584-933a-93498898e6bb"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Grapple"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""27f6a199-1992-44d1-a5e1-57b15754ef1d"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -39,7 +39,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""64d4d884-4fbe-4e7e-973d-a15f697455f2"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""interactions"": """"
                 }
             ],
@@ -68,11 +68,22 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b7ef2581-503b-496b-806f-1bb6c383102a"",
+                    ""id"": ""fcd92087-9fce-4553-8c84-9dbd63eb31f2"",
                     ""path"": ""<Gamepad>/leftStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31b0ba96-c094-4ca5-b3d7-5c664173c1de"",
+                    ""path"": ""<Gamepad>/dpad/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
