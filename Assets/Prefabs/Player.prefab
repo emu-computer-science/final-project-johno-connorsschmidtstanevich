@@ -195,7 +195,19 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 472f4836-0322-4584-933a-93498898e6bb
+    m_ActionName: Gameplay/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27f6a199-1992-44d1-a5e1-57b15754ef1d
+    m_ActionName: Gameplay/Grapple
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 64d4d884-4fbe-4e7e-973d-a15f697455f2
+    m_ActionName: Gameplay/Movement
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
