@@ -12,7 +12,8 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     public float maxSpeed;
     public float turnMult = 5.0f;
     public float jumpForce;
-
+    public Camera playerCamPrefab;
+    
     [Header("Set Dynamically")] public float speed;
     
     private Rigidbody2D _rb;
@@ -27,8 +28,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     Controls _controls;
 
     private Camera _playerCam;
-
-    public Camera playerCamPrefab;
+    
 
     private bool _isGrounded;
     private bool IsGrounded
