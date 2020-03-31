@@ -40,10 +40,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
                 _isGrounded = false;
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 
@@ -51,8 +48,8 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         get{
             if (_rb.velocity.x > 0) return 1;
-            else if (_rb.velocity.x < 0) return -1;
-            else return 0;}
+            if (_rb.velocity.x < 0) return -1;
+            return 0;}
         
     }
 
