@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, Controls.IGameplayActions
 {
     [Header("Set in Inspector")]
     public float acceleration;
     public float maxSpeed;
-    public float turnMult = 5.0f;
+    [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
     public Camera playerCamPrefab;
     
@@ -157,7 +158,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         // float deltaX = Input.GetAxis("Horizontal");
         float deltaX = _joyPosX;
-        if (IsTurning) deltaX *= Mathf.Max(turnMult, 1);
+        if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
