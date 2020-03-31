@@ -20,17 +20,17 @@ public class @Controls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""472f4836-0322-4584-933a-93498898e6bb"",
-                    ""expectedControlType"": ""Digital"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Grapple"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""27f6a199-1992-44d1-a5e1-57b15754ef1d"",
-                    ""expectedControlType"": ""Digital"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -39,7 +39,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""64d4d884-4fbe-4e7e-973d-a15f697455f2"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": ""AxisDeadzone"",
+                    ""processors"": ""AxisDeadzone(min=0.3)"",
                     ""interactions"": """"
                 }
             ],
@@ -48,7 +48,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""1cfd889a-82bc-4d82-9b07-0ea5d2957f8a"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Default"",
                     ""action"": ""Jump"",
