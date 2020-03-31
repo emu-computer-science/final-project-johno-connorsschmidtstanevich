@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, Controls.IGameplayActions
 {
     [Header("Set in Inspector")]
     public float acceleration;
@@ -94,29 +94,29 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _controls.Gameplay.Movement.performed += Movement;
+        _controls.Gameplay.Movement.performed += OnMovement;
         _controls.Gameplay.Movement.Enable();
 
-        _controls.Gameplay.Jump.performed += Jump;
+        _controls.Gameplay.Jump.performed += OnJump;
         _controls.Gameplay.Jump.Enable();
 
-        _controls.Gameplay.Grapple.performed += Grapple;
+        _controls.Gameplay.Grapple.performed += OnGrapple;
         _controls.Gameplay.Grapple.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Gameplay.Movement.performed -= Movement;
+        _controls.Gameplay.Movement.performed -= OnMovement;
         _controls.Gameplay.Movement.Disable();
 
-        _controls.Gameplay.Jump.performed -= Jump;
+        _controls.Gameplay.Jump.performed -= OnJump;
         _controls.Gameplay.Jump.Disable();
 
-        _controls.Gameplay.Grapple.performed -= Grapple;
+        _controls.Gameplay.Grapple.performed -= OnGrapple;
         _controls.Gameplay.Grapple.Disable();
     }
 
-    private void Movement(InputAction.CallbackContext context)
+    public void OnMovement(InputAction.CallbackContext context)
     {
         // Debug.Log("Move");
         _joyPosX = context.ReadValue<float>();
@@ -130,12 +130,12 @@ public class Player : MonoBehaviour
 
     // public float joyPos2;
 
-    private void Jump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("Jump");
     }
 
-    private void Grapple(InputAction.CallbackContext context)
+    public void OnGrapple(InputAction.CallbackContext context)
     {
         Debug.Log("Grapple");
     }
