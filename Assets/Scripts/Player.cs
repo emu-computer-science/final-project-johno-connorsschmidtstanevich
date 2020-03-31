@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     [Header("Set in Inspector")]
     public float acceleration;
     public float maxSpeed;
-    public float turnMult = 1.0f;
+    public float turnMult = 5.0f;
     public float jumpForce;
 
     [Header("Set Dynamically")] public float speed;
