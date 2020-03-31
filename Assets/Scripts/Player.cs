@@ -145,6 +145,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     public void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("Jump");
+        _jumping = context.ReadValue<float>() >= 0.9f;
         if (IsGrounded) _rb.AddForce(new Vector2(0.0f, jumpForce));
     }
 
@@ -165,7 +166,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
 
         // joyPos2 = Input.GetAxis("Horizontal");
         // if(_controls.Gameplay.Jump.)
-        if (Input.GetButtonDown("Jump"))
+        if (_jumping)
         {
             if (_rb.velocity.y > 0) _rb.AddForce(Physics.gravity * (-0.5f * Time.deltaTime));
         }
