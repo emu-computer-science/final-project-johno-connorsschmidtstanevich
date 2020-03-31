@@ -151,6 +151,8 @@ MonoBehaviour:
   turnMult: 5
   jumpForce: 5000
   speed: 0
+  PlayerCamPrefab: {fileID: 3164793655975780613, guid: a0f53e298e713314096de50ae8d3be5a,
+    type: 3}
 --- !u!95 &3088660706592517919
 Animator:
   serializedVersion: 3

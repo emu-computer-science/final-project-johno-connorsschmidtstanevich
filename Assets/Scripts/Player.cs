@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,8 +22,13 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     private Collider2D _collider;
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private float _joyPosX;
+    private bool _jumping;
 
     Controls _controls;
+
+    private Camera _playerCam;
+
+    public Camera playerCamPrefab;
 
     private bool _isGrounded;
     private bool IsGrounded
@@ -95,6 +101,9 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _controls = new Controls();
+        _playerCam = Instantiate(playerCamPrefab);
+        _playerCam.GetComponent<CameraController>().player = gameObject;
+        GetComponent<PlayerInput>().camera = _playerCam;
     }
 
     private void OnEnable()
@@ -157,7 +166,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
 
         // joyPos2 = Input.GetAxis("Horizontal");
-
+        // if(_controls.Gameplay.Jump.)
         if (Input.GetButtonDown("Jump"))
         {
             if (_rb.velocity.y > 0) _rb.AddForce(Physics.gravity * (-0.5f * Time.deltaTime));
