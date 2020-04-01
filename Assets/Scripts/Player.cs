@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     private bool _isGrounded;
     
     /**
-     * Checks whether the player is grounded, and resets it as it returns.
+     * Checks whether the player is grounded.
      */
     private bool IsGrounded
     {
