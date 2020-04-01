@@ -148,11 +148,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 10000
   maxSpeed: 1000000
-  turnMult: 5
-  jumpForce: 5000
+  turnMultiplier: 5
+  jumpForce: 64
   playerCamPrefab: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
     type: 3}
   speed: 0
+  debugJump: 0
+  debugJumpHold: 0
 --- !u!95 &3088660706592517919
 Animator:
   serializedVersion: 3

@@ -32,6 +32,10 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     
 
     private bool _isGrounded;
+    
+    /**
+     * Checks whether the player is grounded, and resets it as it returns.
+     */
     private bool IsGrounded
     {
         get
@@ -138,7 +142,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         // _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
-    public float JoyPosX => _joyPosX;
+    [FormerlySerializedAs("JoyPosX")] public float joyPosX;
 
     // public float joyPos2;
 
@@ -146,7 +150,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         Debug.Log("Jump");
         _jumping = context.ReadValue<float>() >= 0.9f;
-        if (IsGrounded) _rb.AddForce(new Vector2(0.0f, jumpForce));
+        if (IsGrounded && _jumping) _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     public void OnGrapple(InputAction.CallbackContext context)
@@ -154,29 +158,50 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         Debug.Log("Grapple");
     }
 
+    public bool debugJump;
+    public float debugJumpHold = 0.0f;
+    public bool debugIsGrounded;
+
+    private void DebugUpdater()
+    {
+        joyPosX = _joyPosX;
+        debugJump = _jumping;
+        debugIsGrounded = _isGrounded;
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // float deltaX = Input.GetAxis("Horizontal");
         float deltaX = _joyPosX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
-        _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
+        
 
         // joyPos2 = Input.GetAxis("Horizontal");
         // if(_controls.Gameplay.Jump.)
         if (_jumping)
         {
-            if (_rb.velocity.y > 0) _rb.AddForce(Physics.gravity * (-0.5f * Time.deltaTime));
+            if (_rb.velocity.y > 0)
+            {
+                _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
+                debugJumpHold += 0.01f;
+            }
         }
-        
-        _animator.SetBool(Grounded, _isGrounded);
+
         
         // if (Mathf.Abs(_rb.velocity.x) >= 100)
         // {
         //     
         // }
+    }
+
+    private void LateUpdate()
+    {
+        DebugUpdater();
+        _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
+        _animator.SetBool(Grounded, _isGrounded);
     }
 
     private void FixedUpdate()
