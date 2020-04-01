@@ -87,7 +87,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         foreach (var contact in other.contacts)
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
-            if (Math.Abs(contact.point.y - _collider.bounds.min.y) < 0.01f) _isGrounded = true;
+            if (Math.Abs(contact.point.y - _collider.bounds.min.y) < 0.01f && contact.normal == Vector2.up) _isGrounded = true;
         }
     }
 
