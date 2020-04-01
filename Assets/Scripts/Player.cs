@@ -91,12 +91,6 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
