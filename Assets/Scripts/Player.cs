@@ -25,6 +25,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private float _joyPosX;
     private bool _jumping;
+    [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
 
     Controls _controls;
 
@@ -40,10 +41,14 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         get
         {
-            if (_isGrounded)
+            var contacts = new List<ContactPoint2D>();
+            foreach (var point in groundTouched)
             {
-                _isGrounded = false;
-                return true;
+                point.GetContacts(contacts);
+                foreach (var VARIABLE in contacts)
+                {
+                    if (VARIABLE.normal == Vector2.down) return true;
+                }
             }
             return false;
         }
@@ -88,6 +93,28 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
             if (Math.Abs(contact.point.y - _collider.bounds.min.y) < 0.01f && contact.normal == Vector2.up) _isGrounded = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        List<ContactPoint2D> points = new List<ContactPoint2D>();
+        other.GetContacts(points);
+        foreach (var point in points)
+        {
+            if (point.normal == Vector2.up && !groundTouched.Contains(other.collider) && point.otherCollider.Equals(_collider))
+            {
+                groundTouched.Add(other.collider);
+                return;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (groundTouched.Contains(other.collider))
+        {
+            groundTouched.Remove(other.collider);
         }
     }
 
@@ -144,7 +171,11 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         Debug.Log("Jump");
         _jumping = context.ReadValue<float>() >= 0.9f;
-        if (IsGrounded && _jumping) _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (IsGrounded && _jumping)
+        {
+            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            debugJumpHold = 0.0f;
+        }
     }
 
     public void OnGrapple(InputAction.CallbackContext context)
@@ -160,7 +191,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         joyPosX = _joyPosX;
         debugJump = _jumping;
-        debugIsGrounded = _isGrounded;
+        debugIsGrounded = IsGrounded;
     }
 
     // Update is called once per frame
@@ -180,7 +211,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
             if (_rb.velocity.y > 0)
             {
                 _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
-                debugJumpHold += 0.01f;
+                debugJumpHold += Time.deltaTime;
             }
         }
 
@@ -195,7 +226,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
-        _animator.SetBool(Grounded, _isGrounded);
+        _animator.SetBool(Grounded, IsGrounded);
     }
 
     private void FixedUpdate()
