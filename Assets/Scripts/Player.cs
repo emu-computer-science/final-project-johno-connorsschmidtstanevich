@@ -33,11 +33,13 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     
 
     private bool _isGrounded;
-    
+
+    public bool IsJumping => _jumping;
+
     /**
      * Checks whether the player is grounded.
      */
-    private bool IsGrounded
+    public bool IsGrounded
     {
         get
         {
