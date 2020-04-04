@@ -187,7 +187,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         Debug.Log("Jump");
         _jumping = context.ReadValue<float>() >= 0.9f;
-        if (IsGrounded && _jumping)
+        if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             debugJumpHold = 0.0f;
@@ -207,7 +207,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         joyPosX = _joyPosX;
         debugJump = _jumping;
-        debugIsGrounded = IsGrounded;
+        debugIsGrounded = _isGrounded;
     }
 
     // Update is called once per frame
@@ -242,7 +242,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
-        _animator.SetBool(Grounded, IsGrounded);
+        _animator.SetBool(Grounded, _isGrounded);
     }
 
     private void FixedUpdate()
