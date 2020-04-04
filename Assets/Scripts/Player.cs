@@ -208,14 +208,14 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
 
         // joyPos2 = Input.GetAxis("Horizontal");
         // if(_controls.Gameplay.Jump.)
-        if (_jumping)
-        {
-            if (_rb.velocity.y > 0)
-            {
-                _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
-                debugJumpHold += Time.deltaTime;
-            }
-        }
+        // if (_jumping)
+        // {
+        //     if (_rb.velocity.y > 0)
+        //     {
+        //         _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
+        //         debugJumpHold += Time.deltaTime;
+        //     }
+        // }
 
         
         // if (Mathf.Abs(_rb.velocity.x) >= 100)
