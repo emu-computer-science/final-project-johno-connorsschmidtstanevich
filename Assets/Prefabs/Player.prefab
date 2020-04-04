@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3088660706592517913}
   - component: {fileID: 3088660706592517914}
   - component: {fileID: 3088660706592517918}
-  - component: {fileID: 3088660706592517919}
+  - component: {fileID: -5934422033983741942}
   - component: {fileID: 8797519146867458391}
+  - component: {fileID: 3088660706592517919}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -100,10 +101,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 32}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 52, y: 60}
     newSize: {x: 52, y: 60}
     adaptiveTilingThreshold: 0.5
@@ -128,7 +129,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -149,31 +150,29 @@ MonoBehaviour:
   acceleration: 10000
   maxSpeed: 1000000
   turnMultiplier: 5
-  jumpForce: 64
+  jumpForce: 112
   playerCamPrefab: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
     type: 3}
   speed: 0
+  groundTouched: []
+  joyPosX: 0
   debugJump: 0
   debugJumpHold: 0
---- !u!95 &3088660706592517919
-Animator:
-  serializedVersion: 3
+  debugIsGrounded: 0
+--- !u!114 &-5934422033983741942
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3088660706592517909}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e7068b7366356c47b44840c123948a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c306cef8c62c455aa4fc0d59b3f855b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 8
+  lowJumpMultiplier: 5
 --- !u!114 &8797519146867458391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +216,22 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &3088660706592517919
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088660706592517909}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e7068b7366356c47b44840c123948a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

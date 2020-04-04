@@ -33,23 +33,39 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     
 
     private bool _isGrounded;
-    
+
+    public bool IsJumping => _jumping;
+
     /**
      * Checks whether the player is grounded.
      */
+    // public bool IsGrounded
+    // {
+    //     get
+    //     {
+    //         var contacts = new List<ContactPoint2D>();
+    //         foreach (var point in groundTouched)
+    //         {
+    //             point.GetContacts(contacts);
+    //             foreach (var VARIABLE in contacts)
+    //             {
+    //                 if (VARIABLE.normal == Vector2.down) return true;
+    //             }
+    //         }
+    //         return false;
+    //     }
+    // }
+
     private bool IsGrounded
     {
         get
         {
-            var contacts = new List<ContactPoint2D>();
-            foreach (var point in groundTouched)
+            if (_isGrounded)
             {
-                point.GetContacts(contacts);
-                foreach (var VARIABLE in contacts)
-                {
-                    if (VARIABLE.normal == Vector2.down) return true;
-                }
+                _isGrounded = false;
+                return true;
             }
+
             return false;
         }
     }
@@ -105,7 +121,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
             if (point.normal == Vector2.up && !groundTouched.Contains(other.collider) && point.otherCollider.Equals(_collider))
             {
                 groundTouched.Add(other.collider);
-                return;
+                // return;
             }
         }
     }
@@ -171,7 +187,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         Debug.Log("Jump");
         _jumping = context.ReadValue<float>() >= 0.9f;
-        if (IsGrounded && _jumping)
+        if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             debugJumpHold = 0.0f;
@@ -191,7 +207,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         joyPosX = _joyPosX;
         debugJump = _jumping;
-        debugIsGrounded = IsGrounded;
+        debugIsGrounded = _isGrounded;
     }
 
     // Update is called once per frame
@@ -206,14 +222,14 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
 
         // joyPos2 = Input.GetAxis("Horizontal");
         // if(_controls.Gameplay.Jump.)
-        if (_jumping)
-        {
-            if (_rb.velocity.y > 0)
-            {
-                _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
-                debugJumpHold += Time.deltaTime;
-            }
-        }
+        // if (_jumping)
+        // {
+        //     if (_rb.velocity.y > 0)
+        //     {
+        //         _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
+        //         debugJumpHold += Time.deltaTime;
+        //     }
+        // }
 
         
         // if (Mathf.Abs(_rb.velocity.x) >= 100)
@@ -226,7 +242,8 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     {
         DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
-        _animator.SetBool(Grounded, IsGrounded);
+        _animator.SetBool(Grounded, _isGrounded);
+        if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
     }
 
     private void FixedUpdate()
