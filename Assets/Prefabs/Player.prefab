@@ -150,7 +150,7 @@ MonoBehaviour:
   acceleration: 10000
   maxSpeed: 1000000
   turnMultiplier: 5
-  jumpForce: 64
+  jumpForce: 112
   playerCamPrefab: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
     type: 3}
   speed: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c306cef8c62c455aa4fc0d59b3f855b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 8
+  lowJumpMultiplier: 5
 --- !u!114 &8797519146867458391
 MonoBehaviour:
   m_ObjectHideFlags: 0
