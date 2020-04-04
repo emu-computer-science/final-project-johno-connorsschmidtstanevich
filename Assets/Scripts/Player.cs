@@ -243,6 +243,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
+        if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
     }
 
     private void FixedUpdate()
