@@ -39,19 +39,33 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     /**
      * Checks whether the player is grounded.
      */
-    public bool IsGrounded
+    // public bool IsGrounded
+    // {
+    //     get
+    //     {
+    //         var contacts = new List<ContactPoint2D>();
+    //         foreach (var point in groundTouched)
+    //         {
+    //             point.GetContacts(contacts);
+    //             foreach (var VARIABLE in contacts)
+    //             {
+    //                 if (VARIABLE.normal == Vector2.down) return true;
+    //             }
+    //         }
+    //         return false;
+    //     }
+    // }
+
+    private bool IsGrounded
     {
         get
         {
-            var contacts = new List<ContactPoint2D>();
-            foreach (var point in groundTouched)
+            if (_isGrounded)
             {
-                point.GetContacts(contacts);
-                foreach (var VARIABLE in contacts)
-                {
-                    if (VARIABLE.normal == Vector2.down) return true;
-                }
+                _isGrounded = false;
+                return true;
             }
+
             return false;
         }
     }
@@ -107,7 +121,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
             if (point.normal == Vector2.up && !groundTouched.Contains(other.collider) && point.otherCollider.Equals(_collider))
             {
                 groundTouched.Add(other.collider);
-                return;
+                // return;
             }
         }
     }
