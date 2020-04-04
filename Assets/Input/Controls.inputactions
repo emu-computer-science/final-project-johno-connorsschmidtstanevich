@@ -7,17 +7,17 @@
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "472f4836-0322-4584-933a-93498898e6bb",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
                     "name": "Grapple",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "27f6a199-1992-44d1-a5e1-57b15754ef1d",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -26,7 +26,7 @@
                     "type": "Value",
                     "id": "64d4d884-4fbe-4e7e-973d-a15f697455f2",
                     "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone",
+                    "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
                 }
             ],
@@ -35,7 +35,7 @@
                     "name": "",
                     "id": "1cfd889a-82bc-4d82-9b07-0ea5d2957f8a",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Default",
                     "action": "Jump",
@@ -59,7 +59,7 @@
                     "path": "<Gamepad>/leftStick/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Default",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -70,8 +70,35 @@
                     "path": "<Gamepad>/dpad/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Default",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "6f6d7397-e0f4-4cc6-8972-f757d63296de",
+            "actions": [
+                {
+                    "name": "Confirm",
+                    "type": "Button",
+                    "id": "b1b7f115-83ee-4d3b-9dee-71f7c959801e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "caf1c962-8f72-4245-bba0-465bf6676eb0",
+                    "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
