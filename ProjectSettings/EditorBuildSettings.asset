@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/_PhysicsTestRoom.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 65b7e3502ce134645a5ce82d3b26601f
+  - enabled: 1
+    path: Assets/Scenes/Yeet-Them-All.unity
+    guid: cef545281fc4f62458c5e6474ba4210d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f009b21e3be1dec449654c1bd8034542,
       type: 2}
