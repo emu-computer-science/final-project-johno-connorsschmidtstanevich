@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     public float maxSpeed;
     [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
-    public Camera playerCamPrefab;
+    // public Camera playerCamPrefab;
     
     [Header("Set Dynamically")] public float speed;
     
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
     private float _joyPosX;
     private bool _jumping;
     [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
+    private PlayerInput _player;
 
     Controls _controls;
 
@@ -140,9 +141,10 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _controls = new Controls();
-        _playerCam = Instantiate(playerCamPrefab);
-        _playerCam.GetComponent<CameraController>().player = gameObject;
-        GetComponent<PlayerInput>().camera = _playerCam;
+        // _playerCam = Instantiate(playerCamPrefab);
+        // _playerCam.GetComponent<CameraController>().player = gameObject;
+        // GetComponent<PlayerInput>().camera = _playerCam;
+        _player = GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
