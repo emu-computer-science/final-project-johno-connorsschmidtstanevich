@@ -20081,11 +20081,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3088660706592517909, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3088660706592517912, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
         type: 3}
       propertyPath: m_LocalPosition.x
