@@ -108,9 +108,9 @@ public class Player : MonoBehaviour
                 case 0:
                     return false;
                 case 1:
-                    return Input.GetAxis("Horizontal") < 0;
+                    return _joyPosX < 0;
                 case -1:
-                    return Input.GetAxis("Horizontal") > 0;
+                    return _joyPosX > 0;
                 default:
                     return false;
             }
