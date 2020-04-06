@@ -18,11 +18,12 @@ public class YeetThemAll : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "FinishLine")
+        if (other.gameObject.CompareTag("Finish"))
         {
             winText.text = "You Win!";
+            Debug.Log("You Win!");
         }
     }
 }
