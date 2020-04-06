@@ -188,31 +188,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6128178117854630120, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_CropFrameY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6128178117854630120, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_CropFrameX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: orthographic size
-      value: 224
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a125c20679f4f8f41bc6ccf9f536c7e4, type: 3}
 --- !u!1 &519420028
@@ -290,7 +265,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}

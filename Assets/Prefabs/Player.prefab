@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: -5934422033983741942}
   - component: {fileID: 8797519146867458391}
   - component: {fileID: 3088660706592517919}
-  - component: {fileID: 3093584476824498100}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -518,16 +517,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _PlayerCam
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30967b9b81f6e142a8cc8d106c0686a, type: 3}
