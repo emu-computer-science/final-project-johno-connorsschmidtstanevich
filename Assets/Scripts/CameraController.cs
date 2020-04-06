@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
                 // Debug.Log(offset);
                 offset = new Vector3(0,0,-10);
                 CameraPos = offset;
-                if (player != null) offset = CameraPos - PlayerPos;
+                // if (player != null) offset = CameraPos - PlayerPos;
         }
 
         private void LateUpdate()
