@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private bool _jumping;
     [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
     private PlayerInput _player;
+    private SpriteRenderer[] _sprites;
 
     Controls _controls;
 
@@ -164,6 +165,7 @@ public class Player : MonoBehaviour
         // _playerCam.GetComponent<CameraController>().player = gameObject;
         // GetComponent<PlayerInput>().camera = _playerCam;
         _player = GetComponent<PlayerInput>();
+        _sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -265,21 +267,17 @@ public class Player : MonoBehaviour
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
-        var sprites = GetComponentsInChildren<SpriteRenderer>();
-        switch (Facing)
+        foreach (var spriteRenderer in _sprites)
         {
-            case Direction.LEFT:
-                foreach (var renderer in sprites)
-                {
-                    renderer.flipX = true;
-                }
-                break;
-            case Direction.RIGHT:
-                foreach (var renderer in sprites)
-                {
-                    renderer.flipX = false;
-                }
-                break;
+            switch (Facing)
+            {
+                case Direction.LEFT:
+                    spriteRenderer.flipX = true;
+                    break;
+                case Direction.RIGHT:
+                    spriteRenderer.flipX = false;
+                    break;
+            }
         }
     }
 
