@@ -5,8 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.InputSystem.Controls;
 
-public class Player : MonoBehaviour, Controls.IGameplayActions
+public class Player : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public float acceleration;
@@ -71,13 +72,31 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         }
     }
 
+    enum Direction
+    {
+        LEFT = -1,
+        RIGHT = 1,
+        NONE = 0
+    }
+
+    private Direction Facing
+    {
+        get
+        {
+            if (_joyPosX > 0) return Direction.RIGHT;
+            if (_joyPosX < 0) return Direction.LEFT;
+            return Direction.NONE;
+        }
+    }
+    
     private int GetDirection
     {
-        get{
+        get
+        {
             if (_rb.velocity.x > 0) return 1;
             if (_rb.velocity.x < 0) return -1;
-            return 0;}
-        
+            return 0;
+        }
     }
 
     private bool IsTurning
@@ -149,32 +168,32 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
 
     private void OnEnable()
     {
-        _controls.Gameplay.Movement.performed += OnMovement;
-        _controls.Gameplay.Movement.Enable();
+        // _controls.Gameplay.Movement.performed += OnMovement;
+        // _controls.Gameplay.Movement.Enable();
 
-        _controls.Gameplay.Jump.performed += OnJump;
-        _controls.Gameplay.Jump.Enable();
-
-        _controls.Gameplay.Grapple.performed += OnGrapple;
-        _controls.Gameplay.Grapple.Enable();
+        // _controls.Gameplay.Jump.performed += OnJump;
+        // _controls.Gameplay.Jump.Enable();
+        //
+        // _controls.Gameplay.Grapple.performed += OnGrapple;
+        // _controls.Gameplay.Grapple.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Gameplay.Movement.performed -= OnMovement;
-        _controls.Gameplay.Movement.Disable();
+        // _controls.Gameplay.Movement.performed -= OnMovement;
+        // _controls.Gameplay.Movement.Disable();
 
-        _controls.Gameplay.Jump.performed -= OnJump;
-        _controls.Gameplay.Jump.Disable();
-
-        _controls.Gameplay.Grapple.performed -= OnGrapple;
-        _controls.Gameplay.Grapple.Disable();
+        // _controls.Gameplay.Jump.performed -= OnJump;
+        // _controls.Gameplay.Jump.Disable();
+        //
+        // _controls.Gameplay.Grapple.performed -= OnGrapple;
+        // _controls.Gameplay.Grapple.Disable();
     }
 
-    public void OnMovement(InputAction.CallbackContext context)
+    public void OnMovement(InputValue context)
     {
         // Debug.Log("Move");
-        _joyPosX = context.ReadValue<float>();
+        _joyPosX = context.Get<float>();
         // joyPos = _joyPosX;
         // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
         // Vector2 movement = new Vector2(deltaX, 0.0f);
@@ -185,10 +204,10 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
 
     // public float joyPos2;
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputValue context)
     {
         Debug.Log("Jump");
-        _jumping = context.ReadValue<float>() >= 0.9f;
+        _jumping = context.Get<float>() >= 0.9f;
         if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -196,7 +215,7 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         }
     }
 
-    public void OnGrapple(InputAction.CallbackContext context)
+    public void OnGrapple(InputValue context)
     {
         Debug.Log("Grapple");
     }
@@ -246,6 +265,22 @@ public class Player : MonoBehaviour, Controls.IGameplayActions
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+        switch (Facing)
+        {
+            case Direction.LEFT:
+                foreach (var renderer in sprites)
+                {
+                    renderer.flipX = true;
+                }
+                break;
+            case Direction.RIGHT:
+                foreach (var renderer in sprites)
+                {
+                    renderer.flipX = false;
+                }
+                break;
+        }
     }
 
     private void FixedUpdate()
