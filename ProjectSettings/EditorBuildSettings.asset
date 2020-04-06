@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 65b7e3502ce134645a5ce82d3b26601f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Yeet-Them-All.unity
     guid: cef545281fc4f62458c5e6474ba4210d
   - enabled: 1
