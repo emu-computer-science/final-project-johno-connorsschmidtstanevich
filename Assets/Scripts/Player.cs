@@ -72,13 +72,31 @@ public class Player : MonoBehaviour
         }
     }
 
+    enum Direction
+    {
+        LEFT = -1,
+        RIGHT = 1,
+        NONE = 0
+    }
+
+    private Direction Facing
+    {
+        get
+        {
+            if (_joyPosX > 0) return Direction.RIGHT;
+            if (_joyPosX < 0) return Direction.LEFT;
+            return Direction.NONE;
+        }
+    }
+    
     private int GetDirection
     {
-        get{
+        get
+        {
             if (_rb.velocity.x > 0) return 1;
             if (_rb.velocity.x < 0) return -1;
-            return 0;}
-        
+            return 0;
+        }
     }
 
     private bool IsTurning
@@ -247,6 +265,22 @@ public class Player : MonoBehaviour
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+        switch (Facing)
+        {
+            case Direction.LEFT:
+                foreach (var renderer in sprites)
+                {
+                    renderer.flipX = true;
+                }
+                break;
+            case Direction.RIGHT:
+                foreach (var renderer in sprites)
+                {
+                    renderer.flipX = false;
+                }
+                break;
+        }
     }
 
     private void FixedUpdate()
