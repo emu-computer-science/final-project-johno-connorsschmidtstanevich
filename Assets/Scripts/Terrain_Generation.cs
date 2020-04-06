@@ -8,6 +8,7 @@ public class Terrain_Generation : MonoBehaviour
     [Header("Set in Inspector")]
     public GameObject[] terrainChunks;
     public int numberOfChunks = 10;
+    public GameObject finishLine;
 
 
     [Header("Set Dynamically")]
@@ -116,6 +117,9 @@ public class Terrain_Generation : MonoBehaviour
             }
             
         }
+        terrainChunk = Instantiate<GameObject>(finishLine);
+        terrainChunk.transform.position = new Vector2(lastChunkPosition + 800, 0);
+
     }
 
     // Update is called once per frame
