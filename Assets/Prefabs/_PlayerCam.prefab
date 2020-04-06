@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1001 &1726657209130433762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30,6 +30,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _PlayerCam
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164793655975780615, guid: a0f53e298e713314096de50ae8d3be5a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3164793655975780858, guid: a0f53e298e713314096de50ae8d3be5a,
         type: 3}

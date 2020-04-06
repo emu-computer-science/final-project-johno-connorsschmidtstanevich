@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1613458289
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1023724673216449222, guid: 8cebb4fbd1ca26c4894de4b19d34ddd7,
     type: 3}
@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: -5934422033983741942}
   - component: {fileID: 8797519146867458391}
   - component: {fileID: 3088660706592517919}
-  - component: {fileID: 3093584476824498100}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -408,8 +407,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1613458289
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -3017997494126066164, guid: ff7bf6aa4b696d9409a47f513d04e52a,
     type: 3}
@@ -454,11 +453,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3088660706592517909}
-    - target: {fileID: -5571040080423064537, guid: c30967b9b81f6e142a8cc8d106c0686a,
-        type: 3}
-      propertyPath: offset.z
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 4331841182273281304, guid: c30967b9b81f6e142a8cc8d106c0686a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -472,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 4331841182273281304, guid: c30967b9b81f6e142a8cc8d106c0686a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4331841182273281304, guid: c30967b9b81f6e142a8cc8d106c0686a,
         type: 3}
@@ -518,16 +512,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _PlayerCam
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30967b9b81f6e142a8cc8d106c0686a, type: 3}
