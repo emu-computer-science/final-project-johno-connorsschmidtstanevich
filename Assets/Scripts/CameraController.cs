@@ -20,7 +20,12 @@ public class CameraController : MonoBehaviour
         {
                 get
                 {
-                        if (player != null) return new Vector3(player.transform.position.x, 0, 0);
+                        if (player != null)
+                        {
+                                var position = player.transform.position;
+                                return new Vector3(position.x, Mathf.Clamp(position.y, 0, 64), 0);
+                        }
+
                         return default;
                 }
         }
