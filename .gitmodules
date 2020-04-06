@@ -1,0 +1,3 @@
+[submodule "WebGL-Build"]
+	path = WebGL-Build
+	url = https://github.com/BlastoiseBlue/Yeet-Them-All-WebGL.git
