@@ -9,6 +9,7 @@ public class Taunt : StateMachineBehaviour
     {
         animator.GetComponent<AudioSource>().time = 0.3f;
         animator.GetComponent<AudioSource>().Play();
+        animator.GetComponent<Rigidbody2D>().simulated = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,10 +19,10 @@ public class Taunt : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.GetComponent<Rigidbody2D>().simulated = true;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
