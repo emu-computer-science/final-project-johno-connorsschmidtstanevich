@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rb;
 
     private Animator _animator;
+    private AnimatorStateInfo _animatorState;
     private Collider2D _collider;
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
@@ -161,6 +162,7 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _controls = new Controls();
         // _playerCam = Instantiate(playerCamPrefab);
         // _playerCam.GetComponent<CameraController>().player = gameObject;
@@ -226,7 +228,7 @@ public class Player : MonoBehaviour
     public void OnTaunt(InputValue button)
     {
         Debug.Log("Taunt");
-        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
+        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
     public bool debugJump;
