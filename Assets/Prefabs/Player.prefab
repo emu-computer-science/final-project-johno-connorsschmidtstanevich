@@ -318,8 +318,7 @@ MonoBehaviour:
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
-    type: 3}
+  m_Camera: {fileID: 6128178117854630121}
 --- !u!95 &3088660706592517919
 Animator:
   serializedVersion: 3
@@ -518,6 +517,12 @@ PrefabInstance:
 --- !u!4 &6128178117854629910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4331841182273281304, guid: c30967b9b81f6e142a8cc8d106c0686a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7572348800610766094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &6128178117854630121 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4331841182273281511, guid: c30967b9b81f6e142a8cc8d106c0686a,
     type: 3}
   m_PrefabInstance: {fileID: 7572348800610766094}
   m_PrefabAsset: {fileID: 0}
