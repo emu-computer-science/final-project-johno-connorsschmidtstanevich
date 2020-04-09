@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2357469787397304631}
   - component: {fileID: 2357469787397304624}
+  - component: {fileID: 3863258036066132626}
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Respawn
@@ -75,3 +76,11 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!81 &3863258036066132626
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357469787397304625}
+  m_Enabled: 1
