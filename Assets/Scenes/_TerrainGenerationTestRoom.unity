@@ -406,8 +406,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
         type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
       propertyPath: m_MaxPlayerCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
         type: 3}
@@ -415,6 +420,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4409204844513137355, guid: 3300a0ea0d19ba84497a947f314a8305,
         type: 3}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinBehavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_Id
+      value: 11b87958-f6a4-46f1-98a6-3d4356c2d772
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_Name
+      value: Join
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_UseReference
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 9e800987-3e4e-43e3-9435-4ace764c2242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Join
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/start
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[1].m_Id
+      value: afba984b-5708-4d87-b5d4-7fb3904dae59
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Join
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
     - target: {fileID: 2357469787397304625, guid: f09bf35113702814195fd483f183f897,
         type: 3}
       propertyPath: m_Name
@@ -423,12 +478,12 @@ PrefabInstance:
     - target: {fileID: 2357469787397304631, guid: f09bf35113702814195fd483f183f897,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -387
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2357469787397304631, guid: f09bf35113702814195fd483f183f897,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -161
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2357469787397304631, guid: f09bf35113702814195fd483f183f897,
         type: 3}
@@ -474,6 +529,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[0].x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[1].x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[2].x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[3].x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[0].y
+      value: -160
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[1].y
+      value: -96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[2].y
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[3].y
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f09bf35113702814195fd483f183f897, type: 3}

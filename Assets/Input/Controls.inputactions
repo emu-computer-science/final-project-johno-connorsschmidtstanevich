@@ -28,6 +28,14 @@
                     "expectedControlType": "Axis",
                     "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
+                },
+                {
+                    "name": "Taunt",
+                    "type": "Button",
+                    "id": "17a231a5-c61a-477c-93ba-710ca99601f4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -184,6 +192,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a235ccf9-7b41-43d9-ab3e-2f80e954c53c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Taunt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15699d1c-8b7b-4e38-a38b-d1c3c31fecb4",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Taunt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

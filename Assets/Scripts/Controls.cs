@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": ""AxisDeadzone(min=0.3)"",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Taunt"",
+                    ""type"": ""Button"",
+                    ""id"": ""17a231a5-c61a-477c-93ba-710ca99601f4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -197,6 +205,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a235ccf9-7b41-43d9-ab3e-2f80e954c53c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Taunt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15699d1c-8b7b-4e38-a38b-d1c3c31fecb4"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Taunt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -258,6 +288,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Grapple = m_Gameplay.FindAction("Grapple", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
+        m_Gameplay_Taunt = m_Gameplay.FindAction("Taunt", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
@@ -313,6 +344,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Grapple;
     private readonly InputAction m_Gameplay_Movement;
+    private readonly InputAction m_Gameplay_Taunt;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -320,6 +352,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Grapple => m_Wrapper.m_Gameplay_Grapple;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
+        public InputAction @Taunt => m_Wrapper.m_Gameplay_Taunt;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,6 +371,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Taunt.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTaunt;
+                @Taunt.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTaunt;
+                @Taunt.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTaunt;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -351,6 +387,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Taunt.started += instance.OnTaunt;
+                @Taunt.performed += instance.OnTaunt;
+                @Taunt.canceled += instance.OnTaunt;
             }
         }
     }
@@ -411,6 +450,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnTaunt(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
