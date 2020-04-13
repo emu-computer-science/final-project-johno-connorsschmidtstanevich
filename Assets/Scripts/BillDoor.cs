@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Bill_Door : MonoBehaviour
+public class BillDoor : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public float killPlane;
