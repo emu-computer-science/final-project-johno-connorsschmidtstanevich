@@ -13,6 +13,6 @@ public class Spawner : MonoBehaviour
     {
         Debug.Log($"Player {player.playerIndex + 1} has joined!");
         player.transform.position = SpawnPoints[player.playerIndex];
-        player.gameObject.GetComponentsInChildren<SpriteRenderer>()[2].color = PlayerColors[player.playerIndex];
+        player.gameObject.GetComponentsInChildren<SpriteRenderer>()[1].color = PlayerColors[player.playerIndex];
     }
 }
