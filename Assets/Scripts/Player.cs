@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private PlayerInput _player;
     private SpriteRenderer[] _sprites;
 
+    public SpriteRenderer[] Sprites => _sprites;
+
     Controls _controls;
 
     private Camera _playerCam;
