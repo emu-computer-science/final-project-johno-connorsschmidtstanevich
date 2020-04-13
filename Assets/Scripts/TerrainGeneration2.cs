@@ -8,8 +8,10 @@ public class TerrainGeneration2 : MonoBehaviour
     [Header("Set in Inspector")]
     public Tile platform;
     public Tile background;
+    public Tile finishLine;
     public Tilemap Foreground;
     public Tilemap Background;
+    public Tilemap FinishLine;
 
     [Header("Set Dynamically")]
     public bool holeY1 = false;
@@ -171,6 +173,10 @@ public class TerrainGeneration2 : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < 32; i++)
+        {
+            FinishLine.SetTile(new Vector3Int(500, i, 0), finishLine);
+        }
     }
 
 }
