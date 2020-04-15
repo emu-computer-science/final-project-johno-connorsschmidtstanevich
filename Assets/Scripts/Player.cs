@@ -211,10 +211,10 @@ public class Player : MonoBehaviour
 
     // public float joyPos2;
 
-    public void OnJump(InputValue context)
+    public void OnJump(InputValue button)
     {
         Debug.Log("Jump");
-        _jumping = context.Get<float>() >= 0.9f;
+        _jumping = button.Get<float>() >= 0.9f;
         if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnGrapple(InputValue context)
+    public void OnGrapple(InputValue button)
     {
         Debug.Log("Grapple");
     }
