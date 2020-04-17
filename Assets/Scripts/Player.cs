@@ -299,7 +299,7 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(speed) > maxSpeed)
         {
             Vector2 targetSpeed = new Vector2(maxSpeed, 0.0f);
-            _rb.velocity = Vector2.Lerp(new Vector2(speed, 0.0f).normalized, targetSpeed.normalized, 0.05f);
+            _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(speed, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
         }
     }
     
