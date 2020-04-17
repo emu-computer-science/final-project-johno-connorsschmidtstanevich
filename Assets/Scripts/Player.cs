@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
     public void OnMovement(InputValue context)
     {
         // Debug.Log("Move");
-        _joyPosX = context.Get<float>();
+        // _joyPosX = context.Get<float>();
         // joyPos = _joyPosX;
         // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
         // Vector2 movement = new Vector2(deltaX, 0.0f);
@@ -248,7 +248,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // float deltaX = Input.GetAxis("Horizontal");
-        float deltaX = _joyPosX;
+        float deltaX = _player.currentActionMap.FindAction("Movement").ReadValue<float>();
+        _joyPosX = deltaX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
