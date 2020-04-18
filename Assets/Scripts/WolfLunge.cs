@@ -8,6 +8,7 @@ public class WolfLunge : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponentsInChildren<Collider2D>()[1].enabled = true;
+        animator.GetComponent<Rigidbody2D>().velocity = animator.GetComponent<Player>().LungeDirection;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

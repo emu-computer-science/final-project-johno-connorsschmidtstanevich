@@ -45,6 +45,14 @@ public class Player : MonoBehaviour
 
     public int HitStun { get; private set; }
 
+    public Vector2 LungeDirection
+    {
+        get
+        {
+            return new Vector2(_rb.velocity.x, jumpForce);
+        }
+    }
+    
     /**
      * Checks whether the player is grounded.
      */
