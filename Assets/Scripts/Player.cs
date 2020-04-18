@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Hitbox")) HitStun = 100;
+        if (other.gameObject.CompareTag("Hitbox") && HitStun <= 0) HitStun = 100;
     }
 
     private void Awake()
@@ -285,6 +285,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+
+        HitStun--;
     }
 
     private void FixedUpdate()
