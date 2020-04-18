@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private static readonly int Taunt = Animator.StringToHash("Taunt");
+    private static readonly int Attack = Animator.StringToHash("Attack");
     private float _joyPosX;
     private bool _jumping;
     [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
@@ -38,11 +39,20 @@ public class Player : MonoBehaviour
 
     private Camera _playerCam;
     
-
     private bool _isGrounded;
 
     public bool IsJumping => _jumping;
 
+    public int HitStun { get; private set; }
+
+    public Vector2 LungeDirection
+    {
+        get
+        {
+            return new Vector2(_rb.velocity.x, jumpForce);
+        }
+    }
+    
     /**
      * Checks whether the player is grounded.
      */
@@ -137,26 +147,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        List<ContactPoint2D> points = new List<ContactPoint2D>();
-        other.GetContacts(points);
-        foreach (var point in points)
-        {
-            if (point.normal == Vector2.up && !groundTouched.Contains(other.collider) && point.otherCollider.Equals(_collider))
-            {
-                groundTouched.Add(other.collider);
-                // return;
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (groundTouched.Contains(other.collider))
-        {
-            groundTouched.Remove(other.collider);
-        }
+        if (other.gameObject.CompareTag("Hitbox") && HitStun <= 0) HitStun = 100;
     }
 
     private void Awake()
@@ -200,7 +193,7 @@ public class Player : MonoBehaviour
     public void OnMovement(InputValue context)
     {
         // Debug.Log("Move");
-        _joyPosX = context.Get<float>();
+        // _joyPosX = context.Get<float>();
         // joyPos = _joyPosX;
         // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
         // Vector2 movement = new Vector2(deltaX, 0.0f);
@@ -211,20 +204,21 @@ public class Player : MonoBehaviour
 
     // public float joyPos2;
 
-    public void OnJump(InputValue context)
+    public void OnJump(InputValue button)
     {
         Debug.Log("Jump");
-        _jumping = context.Get<float>() >= 0.9f;
+        _jumping = button.Get<float>() >= 0.9f;
         if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            debugJumpHold = 0.0f;
+            // debugJumpHold = 0.0f;
         }
     }
 
-    public void OnGrapple(InputValue context)
+    public void OnGrapple(InputValue button)
     {
         Debug.Log("Grapple");
+        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Attack);
     }
 
     public void OnTaunt(InputValue button)
@@ -233,22 +227,23 @@ public class Player : MonoBehaviour
         if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
-    public bool debugJump;
-    public float debugJumpHold = 0.0f;
-    public bool debugIsGrounded;
+    // public bool debugJump;
+    // public float debugJumpHold = 0.0f;
+    // public bool debugIsGrounded;
 
-    private void DebugUpdater()
-    {
-        joyPosX = _joyPosX;
-        debugJump = _jumping;
-        debugIsGrounded = _isGrounded;
-    }
+    // private void DebugUpdater()
+    // {
+    //     joyPosX = _joyPosX;
+    //     debugJump = _jumping;
+    //     debugIsGrounded = _isGrounded;
+    // }
 
     // Update is called once per frame
     private void Update()
     {
         // float deltaX = Input.GetAxis("Horizontal");
-        float deltaX = _joyPosX;
+        float deltaX = _player.currentActionMap.FindAction("Movement").ReadValue<float>();
+        _joyPosX = deltaX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
@@ -274,7 +269,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        DebugUpdater();
+        // DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
@@ -290,6 +285,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+
+        HitStun--;
     }
 
     private void FixedUpdate()
@@ -298,7 +295,7 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(speed) > maxSpeed)
         {
             Vector2 targetSpeed = new Vector2(maxSpeed, 0.0f);
-            _rb.velocity = Vector2.Lerp(new Vector2(speed, 0.0f).normalized, targetSpeed.normalized, 0.05f);
+            _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(speed, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
         }
     }
     

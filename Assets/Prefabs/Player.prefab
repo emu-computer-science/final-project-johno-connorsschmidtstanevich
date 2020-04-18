@@ -208,9 +208,6 @@ MonoBehaviour:
   speed: 0
   groundTouched: []
   joyPosX: 0
-  debugJump: 0
-  debugJumpHold: 0
-  debugIsGrounded: 0
 --- !u!114 &-5934422033983741942
 MonoBehaviour:
   m_ObjectHideFlags: 0
