@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
-    // public Camera playerCamPrefab;
     
     [Header("Set Dynamically")] public float speed;
     
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private float _joyPosX;
     private bool _jumping;
-    [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
     private PlayerInput _player;
     private SpriteRenderer[] _sprites;
 
@@ -56,23 +54,6 @@ public class Player : MonoBehaviour
     /**
      * Checks whether the player is grounded.
      */
-    // public bool IsGrounded
-    // {
-    //     get
-    //     {
-    //         var contacts = new List<ContactPoint2D>();
-    //         foreach (var point in groundTouched)
-    //         {
-    //             point.GetContacts(contacts);
-    //             foreach (var VARIABLE in contacts)
-    //             {
-    //                 if (VARIABLE.normal == Vector2.down) return true;
-    //             }
-    //         }
-    //         return false;
-    //     }
-    // }
-
     private bool IsGrounded
     {
         get
@@ -132,12 +113,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    // private bool IsGrounded()
-    // {
-    //     return Physics.CheckBox(_collider.bounds.center,
-    //         new Vector2(_collider.bounds.center.x, _collider.bounds.min.y - 0.1f));
-    // }
-
     private void OnCollisionStay2D(Collision2D other)
     {
         foreach (var contact in other.contacts)
@@ -159,9 +134,6 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _controls = new Controls();
-        // _playerCam = Instantiate(playerCamPrefab);
-        // _playerCam.GetComponent<CameraController>().player = gameObject;
-        // GetComponent<PlayerInput>().camera = _playerCam;
         _player = GetComponent<PlayerInput>();
         _sprites = GetComponentsInChildren<SpriteRenderer>();
     }
@@ -202,8 +174,6 @@ public class Player : MonoBehaviour
 
     [FormerlySerializedAs("JoyPosX")] public float joyPosX;
 
-    // public float joyPos2;
-
     public void OnJump(InputValue button)
     {
         Debug.Log("Jump");
@@ -211,7 +181,6 @@ public class Player : MonoBehaviour
         if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            // debugJumpHold = 0.0f;
         }
     }
 
@@ -227,49 +196,18 @@ public class Player : MonoBehaviour
         if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
-    // public bool debugJump;
-    // public float debugJumpHold = 0.0f;
-    // public bool debugIsGrounded;
-
-    // private void DebugUpdater()
-    // {
-    //     joyPosX = _joyPosX;
-    //     debugJump = _jumping;
-    //     debugIsGrounded = _isGrounded;
-    // }
-
     // Update is called once per frame
     private void Update()
     {
-        // float deltaX = Input.GetAxis("Horizontal");
         float deltaX = _player.currentActionMap.FindAction("Movement").ReadValue<float>();
         _joyPosX = deltaX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
-        
-
-        // joyPos2 = Input.GetAxis("Horizontal");
-        // if(_controls.Gameplay.Jump.)
-        // if (_jumping)
-        // {
-        //     if (_rb.velocity.y > 0)
-        //     {
-        //         _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
-        //         debugJumpHold += Time.deltaTime;
-        //     }
-        // }
-
-        
-        // if (Mathf.Abs(_rb.velocity.x) >= 100)
-        // {
-        //     
-        // }
     }
 
     private void LateUpdate()
     {
-        // DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
