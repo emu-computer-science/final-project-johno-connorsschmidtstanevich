@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
         if (_jumping && IsGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            debugJumpHold = 0.0f;
+            // debugJumpHold = 0.0f;
         }
     }
 
@@ -219,16 +219,16 @@ public class Player : MonoBehaviour
         if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
-    public bool debugJump;
-    public float debugJumpHold = 0.0f;
-    public bool debugIsGrounded;
+    // public bool debugJump;
+    // public float debugJumpHold = 0.0f;
+    // public bool debugIsGrounded;
 
-    private void DebugUpdater()
-    {
-        joyPosX = _joyPosX;
-        debugJump = _jumping;
-        debugIsGrounded = _isGrounded;
-    }
+    // private void DebugUpdater()
+    // {
+    //     joyPosX = _joyPosX;
+    //     debugJump = _jumping;
+    //     debugIsGrounded = _isGrounded;
+    // }
 
     // Update is called once per frame
     private void Update()
@@ -261,7 +261,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        DebugUpdater();
+        // DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
