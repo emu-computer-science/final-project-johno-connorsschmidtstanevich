@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WolfAttack : StateMachineBehaviour
 {
@@ -35,14 +36,14 @@ public class WolfAttack : StateMachineBehaviour
     //}
 
     // OnStateMachineEnter is called when entering a state machine via its Entry Node
-    //override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
-    //{
-    //    
-    //}
+    public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
+    {
+        animator.GetComponent<PlayerInput>().currentActionMap.Disable();
+    }
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
-    //override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
-    //{
-    //    
-    //}
+    public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
+    {
+        animator.GetComponent<PlayerInput>().currentActionMap.Enable();
+    }
 }
