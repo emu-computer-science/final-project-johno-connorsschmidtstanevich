@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private static readonly int Taunt = Animator.StringToHash("Taunt");
+    private static readonly int Attack = Animator.StringToHash("Attack");
     private float _joyPosX;
     private bool _jumping;
     [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
@@ -209,6 +210,7 @@ public class Player : MonoBehaviour
     public void OnGrapple(InputValue button)
     {
         Debug.Log("Grapple");
+        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Attack);
     }
 
     public void OnTaunt(InputValue button)
