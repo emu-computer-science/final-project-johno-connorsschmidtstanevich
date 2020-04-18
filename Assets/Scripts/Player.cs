@@ -38,10 +38,11 @@ public class Player : MonoBehaviour
 
     private Camera _playerCam;
     
-
     private bool _isGrounded;
 
     public bool IsJumping => _jumping;
+
+    public int HitStun { get; private set; }
 
     /**
      * Checks whether the player is grounded.
@@ -137,27 +138,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     List<ContactPoint2D> points = new List<ContactPoint2D>();
-    //     other.GetContacts(points);
-    //     foreach (var point in points)
-    //     {
-    //         if (point.normal == Vector2.up && !groundTouched.Contains(other.collider) && point.otherCollider.Equals(_collider))
-    //         {
-    //             groundTouched.Add(other.collider);
-    //             // return;
-    //         }
-    //     }
-    // }
-    //
-    // private void OnCollisionExit2D(Collision2D other)
-    // {
-    //     if (groundTouched.Contains(other.collider))
-    //     {
-    //         groundTouched.Remove(other.collider);
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Hitbox")) HitStun = 100;
+    }
 
     private void Awake()
     {
