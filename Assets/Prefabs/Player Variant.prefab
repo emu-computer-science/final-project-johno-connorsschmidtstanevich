@@ -230,7 +230,7 @@ RectTransform:
   m_GameObject: {fileID: 3412589838654052225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 7706942790096078408}
   m_RootOrder: 1
@@ -238,7 +238,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2120, y: 109}
+  m_SizeDelta: {x: 212, y: 109}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6988055911999874386
 CanvasRenderer:
@@ -524,6 +524,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2322329453706530030, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3088660706592517909, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
         type: 3}
       propertyPath: m_Name
@@ -588,6 +593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxSpeed
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336135210361378634, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
         type: 3}
