@@ -166,7 +166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 64, y: 64}
+  m_Size: {x: 54, y: 64}
   m_EdgeRadius: 0
 --- !u!50 &3088660706592517914
 Rigidbody2D:
@@ -206,8 +206,6 @@ MonoBehaviour:
   turnMultiplier: 5
   jumpForce: 112
   speed: 0
-  groundTouched: []
-  joyPosX: 0
 --- !u!114 &-5934422033983741942
 MonoBehaviour:
   m_ObjectHideFlags: 0
