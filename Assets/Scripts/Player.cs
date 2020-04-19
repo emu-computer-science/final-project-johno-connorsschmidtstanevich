@@ -172,8 +172,6 @@ public class Player : MonoBehaviour
         // _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
-    [FormerlySerializedAs("JoyPosX")] public float joyPosX;
-
     public void OnJump(InputValue button)
     {
         Debug.Log("Jump");
