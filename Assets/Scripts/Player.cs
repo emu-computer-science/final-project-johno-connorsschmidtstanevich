@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return new Vector2(_rb.velocity.x, jumpForce);
+            return new Vector2(Mathf.Clamp(50, Mathf.Abs(Velocity), 150) * (int)LastDirection, jumpForce);
         }
     }
 

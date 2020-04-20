@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public class WolfHitBox : MonoBehaviour
@@ -11,7 +11,7 @@ public class WolfHitBox : MonoBehaviour
         {
                 get
                 {
-                        return new Vector2();
+                        return new Vector2(Mathf.Clamp(50, Math.Abs(_player.Velocity), 250) * (int)_player.LastDirection, 50);
                 }
         }
 
