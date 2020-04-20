@@ -28,12 +28,10 @@ public class Player : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private float _joyPosX;
     private bool _jumping;
-    private PlayerInput _player;
+    private PlayerInput _input;
     private SpriteRenderer[] _sprites;
 
     public SpriteRenderer[] Sprites => _sprites;
-
-    Controls _controls;
 
     private Camera _playerCam;
     
@@ -133,8 +131,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
-        _controls = new Controls();
-        _player = GetComponent<PlayerInput>();
+        _input = GetComponent<PlayerInput>();
         _sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
@@ -197,7 +194,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        float deltaX = _player.currentActionMap.FindAction("Movement").ReadValue<float>();
+        float deltaX = _input.currentActionMap.FindAction("Movement").ReadValue<float>();
         _joyPosX = deltaX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
