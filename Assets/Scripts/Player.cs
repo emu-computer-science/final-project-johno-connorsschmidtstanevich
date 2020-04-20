@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
+    public float throwStrength = 100;
     
     [Header("Set Dynamically")] public float speed;
     
@@ -115,6 +116,8 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public Vector2 ThrowDirection => new Vector2(GetComponentInChildren<SpriteRenderer>().flipX?1:-1, 1);
 
     private void OnCollisionStay2D(Collision2D other)
     {
