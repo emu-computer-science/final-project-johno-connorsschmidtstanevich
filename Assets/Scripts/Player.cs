@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    enum Direction
+    private enum Direction
     {
         LEFT = -1,
         RIGHT = 1,
@@ -140,39 +140,6 @@ public class Player : MonoBehaviour
         _sprites = GetComponentsInChildren<SpriteRenderer>();
         HitBox = GetComponentsInChildren<Collider2D>()[1];
         HurtBox = GetComponentsInChildren<Collider2D>()[2];
-
-    private void OnEnable()
-    {
-        // _controls.Gameplay.Movement.performed += OnMovement;
-        // _controls.Gameplay.Movement.Enable();
-
-        // _controls.Gameplay.Jump.performed += OnJump;
-        // _controls.Gameplay.Jump.Enable();
-        //
-        // _controls.Gameplay.Grapple.performed += OnGrapple;
-        // _controls.Gameplay.Grapple.Enable();
-    }
-
-    private void OnDisable()
-    {
-        // _controls.Gameplay.Movement.performed -= OnMovement;
-        // _controls.Gameplay.Movement.Disable();
-
-        // _controls.Gameplay.Jump.performed -= OnJump;
-        // _controls.Gameplay.Jump.Disable();
-        //
-        // _controls.Gameplay.Grapple.performed -= OnGrapple;
-        // _controls.Gameplay.Grapple.Disable();
-    }
-
-    public void OnMovement(InputValue context)
-    {
-        // Debug.Log("Move");
-        // _joyPosX = context.Get<float>();
-        // joyPos = _joyPosX;
-        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
-        // Vector2 movement = new Vector2(deltaX, 0.0f);
-        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
     }
 
     public void OnJump(InputValue button)
