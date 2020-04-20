@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        HitStun--;
+        if (HitStun>0) HitStun--;
     }
 
     private void FixedUpdate()
