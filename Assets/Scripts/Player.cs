@@ -167,6 +167,10 @@ public class Player : MonoBehaviour
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
+        if (_input.currentActionMap.FindAction("Movement").enabled)
+        {
+            _rb.drag = _isGrounded && Facing == Direction.NONE ? 1 : 0;
+        }
     }
 
     private void LateUpdate()
