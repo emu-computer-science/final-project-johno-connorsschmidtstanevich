@@ -12,6 +12,7 @@ public class TerrainGeneration2 : MonoBehaviour
     public Tilemap Foreground;
     public Tilemap Background;
     public Tilemap FinishLine;
+    public GameObject enemy;
 
     [Header("Set Dynamically")]
     public bool holeY1 = false;
@@ -28,6 +29,18 @@ public class TerrainGeneration2 : MonoBehaviour
     public int holeCooldownY2 = 10;
     public int holeCooldownY3 = 10;
     public int holeCooldownY4 = 10;
+
+    public bool enemyY1 = false;
+    public bool enemyY2 = false;
+    public bool enemyY3 = false;
+    public bool enemyY4 = false;
+
+    public int enemyCooldownY1 = 800;
+    public int enemyCooldownY2 = 800;
+    public int enemyCooldownY3 = 800;
+    public int enemyCooldownY4 = 800;
+
+    public GameObject Enemy;
 
 
     // Start is called before the first frame update
@@ -115,7 +128,7 @@ public class TerrainGeneration2 : MonoBehaviour
             if (holeY1)
             {
                 holeTrackerY1++;
-                holeCooldownY1 = 10;
+                holeCooldownY1 = 20;
                 if (holeTrackerY1 >= 10)
                 {
                     holeY1 = false;
@@ -170,6 +183,100 @@ public class TerrainGeneration2 : MonoBehaviour
                 Vector3Int p = new Vector3Int(x, y, 0);
                 Tile tile = background;
                 Background.SetTile(p, tile);
+            }
+        }
+        for (int x = 1000; x < 7500; x++)
+        {
+            if (!enemyY1)
+            {
+                if (Random.value > .9999f)
+                {
+                    Enemy = Instantiate<GameObject>(enemy);
+                    Enemy.transform.position = new Vector3Int(x, 70, 0);
+                    enemyY1 = true;
+                }
+                
+            }
+
+            if (!enemyY2)
+            {
+                if (Random.value > .9997f)
+                {
+                    Enemy = Instantiate<GameObject>(enemy);
+                    Enemy.transform.position = new Vector3Int(x, 200, 0);
+                    enemyY2 = true;
+                }
+
+            }
+
+            if (!enemyY3)
+            {
+                if (Random.value > .9994f)
+                {
+                    Enemy = Instantiate<GameObject>(enemy);
+                    Enemy.transform.position = new Vector3Int(x, 330, 0);
+                    enemyY3 = true;
+                }
+
+            }
+
+            if (!enemyY4)
+            {
+                if (Random.value > .9991f)
+                {
+                    Enemy = Instantiate<GameObject>(enemy);
+                    Enemy.transform.position = new Vector3Int(x, 450, 0);
+                    enemyY4 = true;
+                }
+
+            }
+
+            if (enemyY1)
+            {
+                enemyCooldownY1--;
+                if (enemyCooldownY1 <= 0)
+                {
+                    enemyY1 = false;
+                    enemyCooldownY1 = 500;
+                }
+
+
+            }
+
+            if (enemyY2)
+            {
+                enemyCooldownY2--;
+                if (enemyCooldownY2 <= 0)
+                {
+                    enemyY2 = false;
+                    enemyCooldownY2 = 500;
+                }
+
+
+            }
+
+            if (enemyY3)
+            {
+                enemyCooldownY3--;
+                if (enemyCooldownY3 <= 0)
+                {
+                    enemyY3 = false;
+                    enemyCooldownY3 = 500;
+                }
+
+
+            }
+
+            if (enemyY4)
+            {
+                enemyCooldownY4--;
+                if (enemyCooldownY4 <= 0)
+                {
+                    enemyY4 = false;
+                    enemyCooldownY4 = 500;
+                }
+
+
             }
         }
 
