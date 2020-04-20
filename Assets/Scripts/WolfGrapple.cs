@@ -39,11 +39,13 @@ public class WolfGrapple : StateMachineBehaviour
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
         animator.GetComponent<PlayerInput>().currentActionMap.Disable();
+        animator.GetComponent<Rigidbody2D>().drag = 1;
     }
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
     public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
         animator.GetComponent<PlayerInput>().currentActionMap.Enable();
+        animator.GetComponent<Rigidbody2D>().drag = 0;
     }
 }
