@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Grapple",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "27f6a199-1992-44d1-a5e1-57b15754ef1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Grapple",
+                    "type": "Button",
+                    "id": "20d8149e-5941-4c08-a6a5-1da1e3e0e8a1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -79,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Grapple",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -90,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Grapple",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -101,7 +109,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Grapple",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -212,6 +220,39 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Taunt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "967abba3-491e-4d17-a74f-1ec25e8dec16",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Grapple",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fa87c72-335d-4f66-a1c2-b89bc90982d5",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Grapple",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70cf538e-ec1c-4496-ad17-04893b0442ef",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Grapple",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
