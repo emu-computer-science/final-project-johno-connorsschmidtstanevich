@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Taunt : StateMachineBehaviour
 {
@@ -11,6 +12,7 @@ public class Taunt : StateMachineBehaviour
         animator.GetComponent<AudioSource>().time = 0.3f;
         animator.GetComponent<AudioSource>().Play();
         animator.GetComponent<Rigidbody2D>().simulated = false;
+        animator.GetComponent<PlayerInput>().currentActionMap.Disable();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,6 +25,7 @@ public class Taunt : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<Rigidbody2D>().simulated = true;
+        animator.GetComponent<PlayerInput>().currentActionMap.Enable();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
