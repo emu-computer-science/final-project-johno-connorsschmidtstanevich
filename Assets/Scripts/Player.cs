@@ -14,28 +14,34 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
-    // public Camera playerCamPrefab;
+    public float throwStrength;
+    
+    [Header("Sound Effects")]
+    public AudioClip taunt;
+    public AudioClip hurt;
     
     [Header("Set Dynamically")] public float speed;
     
     private Rigidbody2D _rb;
 
     private Animator _animator;
-    private AnimatorStateInfo _animatorState;
+    private AnimatorStateInfo AnimatorState => _animator.GetCurrentAnimatorStateInfo(0);
     private Collider2D _collider;
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private static readonly int Taunt = Animator.StringToHash("Taunt");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Grapple = Animator.StringToHash("Grapple");
     private float _joyPosX;
     private bool _jumping;
-    [SerializeField] List<Collider2D> groundTouched = new List<Collider2D>();
-    private PlayerInput _player;
+    private PlayerInput _input;
     private SpriteRenderer[] _sprites;
 
     public SpriteRenderer[] Sprites => _sprites;
 
-    Controls _controls;
+    public Collider2D HitBox { get; private set; }
+
+    public Collider2D HurtBox { get; private set; }
 
     private Camera _playerCam;
     
@@ -45,6 +51,8 @@ public class Player : MonoBehaviour
 
     public int HitStun { get; private set; }
 
+    public Direction LastDirection { get; private set; }
+
     public Vector2 LungeDirection
     {
         get
@@ -52,42 +60,8 @@ public class Player : MonoBehaviour
             return new Vector2(_rb.velocity.x, jumpForce);
         }
     }
-    
-    /**
-     * Checks whether the player is grounded.
-     */
-    // public bool IsGrounded
-    // {
-    //     get
-    //     {
-    //         var contacts = new List<ContactPoint2D>();
-    //         foreach (var point in groundTouched)
-    //         {
-    //             point.GetContacts(contacts);
-    //             foreach (var VARIABLE in contacts)
-    //             {
-    //                 if (VARIABLE.normal == Vector2.down) return true;
-    //             }
-    //         }
-    //         return false;
-    //     }
-    // }
 
-    private bool IsGrounded
-    {
-        get
-        {
-            if (_isGrounded)
-            {
-                _isGrounded = false;
-                return true;
-            }
-
-            return false;
-        }
-    }
-
-    enum Direction
+    public enum Direction
     {
         LEFT = -1,
         RIGHT = 1,
@@ -132,11 +106,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    // private bool IsGrounded()
-    // {
-    //     return Physics.CheckBox(_collider.bounds.center,
-    //         new Vector2(_collider.bounds.center.x, _collider.bounds.min.y - 0.1f));
-    // }
+    public Vector2 ThrowDirection => new Vector2(-(int)LastDirection, 1);
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -157,119 +127,58 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
-        _controls = new Controls();
-        // _playerCam = Instantiate(playerCamPrefab);
-        // _playerCam.GetComponent<CameraController>().player = gameObject;
-        // GetComponent<PlayerInput>().camera = _playerCam;
-        _player = GetComponent<PlayerInput>();
+        _input = GetComponent<PlayerInput>();
         _sprites = GetComponentsInChildren<SpriteRenderer>();
+        HitBox = GetComponentsInChildren<Collider2D>()[1];
+        HurtBox = GetComponentsInChildren<Collider2D>()[2];
+        LastDirection = Direction.RIGHT;
     }
-
-    private void OnEnable()
-    {
-        // _controls.Gameplay.Movement.performed += OnMovement;
-        // _controls.Gameplay.Movement.Enable();
-
-        // _controls.Gameplay.Jump.performed += OnJump;
-        // _controls.Gameplay.Jump.Enable();
-        //
-        // _controls.Gameplay.Grapple.performed += OnGrapple;
-        // _controls.Gameplay.Grapple.Enable();
-    }
-
-    private void OnDisable()
-    {
-        // _controls.Gameplay.Movement.performed -= OnMovement;
-        // _controls.Gameplay.Movement.Disable();
-
-        // _controls.Gameplay.Jump.performed -= OnJump;
-        // _controls.Gameplay.Jump.Disable();
-        //
-        // _controls.Gameplay.Grapple.performed -= OnGrapple;
-        // _controls.Gameplay.Grapple.Disable();
-    }
-
-    public void OnMovement(InputValue context)
-    {
-        // Debug.Log("Move");
-        // _joyPosX = context.Get<float>();
-        // joyPos = _joyPosX;
-        // if (isTurning()) deltaX *= Mathf.Max(turnMult, 1);
-        // Vector2 movement = new Vector2(deltaX, 0.0f);
-        // _rb.AddForce(movement * (acceleration * Time.deltaTime));
-    }
-
-    [FormerlySerializedAs("JoyPosX")] public float joyPosX;
-
-    // public float joyPos2;
 
     public void OnJump(InputValue button)
     {
         Debug.Log("Jump");
         _jumping = button.Get<float>() >= 0.9f;
-        if (_jumping && IsGrounded)
+        if (_jumping && _isGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            // debugJumpHold = 0.0f;
         }
+    }
+
+    public void OnAttack(InputValue button)
+    {
+        Debug.Log("Attack");
+        if(AnimatorState.IsName("Idle") || AnimatorState.IsName("Running")) _animator.SetTrigger(Attack);
     }
 
     public void OnGrapple(InputValue button)
     {
         Debug.Log("Grapple");
-        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Attack);
+        Debug.Log(AnimatorState.IsName("Idle"));
+        if(AnimatorState.IsName("Idle") || AnimatorState.IsName("Running")) _animator.SetTrigger(Grapple);
     }
 
     public void OnTaunt(InputValue button)
     {
         Debug.Log("Taunt");
-        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
+        if((AnimatorState.IsName("Idle") || AnimatorState.IsName("Running") || AnimatorState.IsName("Jumping")) && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
-
-    // public bool debugJump;
-    // public float debugJumpHold = 0.0f;
-    // public bool debugIsGrounded;
-
-    // private void DebugUpdater()
-    // {
-    //     joyPosX = _joyPosX;
-    //     debugJump = _jumping;
-    //     debugIsGrounded = _isGrounded;
-    // }
 
     // Update is called once per frame
     private void Update()
     {
-        // float deltaX = Input.GetAxis("Horizontal");
-        float deltaX = _player.currentActionMap.FindAction("Movement").ReadValue<float>();
+        float deltaX = _input.currentActionMap.FindAction("Movement").ReadValue<float>();
         _joyPosX = deltaX;
         if (IsTurning) deltaX *= Mathf.Max(turnMultiplier, 1);
         Vector2 movement = new Vector2(deltaX, 0.0f);
         _rb.AddForce(movement * (acceleration * Time.deltaTime));
-        
-
-        // joyPos2 = Input.GetAxis("Horizontal");
-        // if(_controls.Gameplay.Jump.)
-        // if (_jumping)
-        // {
-        //     if (_rb.velocity.y > 0)
-        //     {
-        //         _rb.AddForce(Physics2D.gravity * (_rb.gravityScale * -0.25f));
-        //         debugJumpHold += Time.deltaTime;
-        //     }
-        // }
-
-        
-        // if (Mathf.Abs(_rb.velocity.x) >= 100)
-        // {
-        //     
-        // }
+        if (_input.currentActionMap.FindAction("Movement").enabled)
+        {
+            _rb.drag = _isGrounded && Facing == Direction.NONE ? 1 : 0;
+        }
     }
 
     private void LateUpdate()
     {
-        // DebugUpdater();
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
         _animator.SetBool(Grounded, _isGrounded);
         if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
@@ -286,7 +195,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        HitStun--;
+        if (new List<Direction>(new[] {Direction.LEFT, Direction.RIGHT}).Contains(Facing))
+            LastDirection = Facing;
+
+        if (HitStun>0) HitStun--;
     }
 
     private void FixedUpdate()

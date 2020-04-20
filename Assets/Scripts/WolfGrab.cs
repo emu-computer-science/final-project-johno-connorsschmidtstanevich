@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Taunt : StateMachineBehaviour
+public class WolfGrab : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    private PlayerInput _player;
+    private List<PlayerInput> OtherPlayers
     {
-        animator.GetComponent<AudioSource>().clip = animator.GetComponent<Player>().taunt;
-        animator.GetComponent<AudioSource>().time = 0.3f;
-        animator.GetComponent<AudioSource>().Play();
-        animator.GetComponent<Rigidbody2D>().simulated = false;
-        animator.GetComponent<PlayerInput>().currentActionMap.Disable();
+        get
+        {
+            var ph = new List<PlayerInput>(PlayerInput.all);
+            ph.Remove(_player);
+            return ph;
+        }
     }
+    
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     
+    // }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,8 +31,15 @@ public class Taunt : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<Rigidbody2D>().simulated = true;
-        animator.GetComponent<PlayerInput>().currentActionMap.Enable();
+        _player = animator.GetComponent<PlayerInput>();
+                foreach (var otherPlayer in OtherPlayers)
+                {
+                    if(animator.GetComponent<Collider2D>().IsTouching(otherPlayer.GetComponent<Player>().HurtBox))
+                    {
+                        animator.SetTrigger("Grab");
+                        break;
+                    }
+                }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

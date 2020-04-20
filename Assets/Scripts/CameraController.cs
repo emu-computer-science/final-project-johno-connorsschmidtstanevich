@@ -18,18 +18,18 @@ public class CameraController : MonoBehaviour
 
         private Camera _camera;
 
-        private float _cameraVerticalExtent => _camera.orthographicSize;
+        private float CameraVerticalExtent => _camera.orthographicSize;
 
-        private float _cameraHorizontalExtent => _camera.aspect * _cameraVerticalExtent;
-        
-        private  Vector3 PlayerPos
+        public float CameraHorizontalExtent => _camera.aspect * CameraVerticalExtent;
+
+        private Vector3 PlayerPos
         {
                 get
                 {
                         if (player != null)
                         {
                                 var position = player.transform.position;
-                                return new Vector3(Mathf.Max(position.x, _cameraHorizontalExtent), Mathf.Clamp(position.y, _cameraVerticalExtent, 272), 0);
+                                return new Vector3(Mathf.Max(position.x, CameraHorizontalExtent), Mathf.Clamp(position.y, CameraVerticalExtent, 272), 0);
                         }
 
                         return default;

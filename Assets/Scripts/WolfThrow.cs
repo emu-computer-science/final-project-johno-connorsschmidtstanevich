@@ -3,16 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Taunt : StateMachineBehaviour
+public class WolfThrow : StateMachineBehaviour
 {
+    private PlayerInput _player;
+    private static readonly int Hit = Animator.StringToHash("Hit");
+
+    private List<PlayerInput> OtherPlayers
+    {
+        get
+        {
+            var ph = new List<PlayerInput>(PlayerInput.all);
+            ph.Remove(_player);
+            return ph;
+        }
+    }
+
+    private void Throw(PlayerInput enemyPlayer, Vector2 launchAngle)
+    {
+        enemyPlayer.GetComponent<Rigidbody2D>().velocity = launchAngle;
+        enemyPlayer.gameObject.GetComponent<Animator>().SetTrigger(Hit);
+    }
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<AudioSource>().clip = animator.GetComponent<Player>().taunt;
-        animator.GetComponent<AudioSource>().time = 0.3f;
-        animator.GetComponent<AudioSource>().Play();
-        animator.GetComponent<Rigidbody2D>().simulated = false;
-        animator.GetComponent<PlayerInput>().currentActionMap.Disable();
+        _player = animator.GetComponent<PlayerInput>();
+        foreach (var otherPlayer in OtherPlayers)
+        {
+            if(animator.GetComponent<Collider2D>().IsTouching(otherPlayer.GetComponent<Player>().HurtBox))
+            {
+                Throw(otherPlayer,
+                    animator.GetComponent<Player>().ThrowDirection * animator.GetComponent<Player>().throwStrength);
+                break;
+            }
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,11 +46,10 @@ public class Taunt : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        animator.GetComponent<Rigidbody2D>().simulated = true;
-        animator.GetComponent<PlayerInput>().currentActionMap.Enable();
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

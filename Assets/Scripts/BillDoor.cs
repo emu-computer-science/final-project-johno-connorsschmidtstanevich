@@ -41,7 +41,7 @@ public class BillDoor : MonoBehaviour
         Debug.Log($"Player {player.playerIndex + 1} has died!");
         yield return new WaitForSecondsRealtime(3);
         player.ActivateInput();
-        player.gameObject.transform.position = _spawner.SpawnPoints[player.playerIndex];
+        player.gameObject.transform.position = _spawner.spawnPoints[player.playerIndex];
         foreach (var sprite in player.GetComponent<Player>().Sprites)
         {
             sprite.enabled = true;
