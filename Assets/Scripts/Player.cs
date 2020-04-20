@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
 
     public SpriteRenderer[] Sprites => _sprites;
 
+    public Collider2D HitBox { get; private set; }
+
+    public Collider2D HurtBox { get; private set; }
+
     private Camera _playerCam;
     
     private bool _isGrounded;
@@ -134,7 +138,8 @@ public class Player : MonoBehaviour
         _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _input = GetComponent<PlayerInput>();
         _sprites = GetComponentsInChildren<SpriteRenderer>();
-    }
+        HitBox = GetComponentsInChildren<Collider2D>()[1];
+        HurtBox = GetComponentsInChildren<Collider2D>()[2];
 
     private void OnEnable()
     {
