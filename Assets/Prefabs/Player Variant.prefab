@@ -1,30 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6635240708371446971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409204844513137355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4e62a973823ed4bbb46177bd504b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-6598717749215088365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409204844513137355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a29dc95f226a807488c55bec08341bf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winText: {fileID: 4305391590921331657}
 --- !u!1 &2334020653065310523
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +337,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f226d5856b4b942be8b06172a68ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6635240708371446971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409204844513137355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4e62a973823ed4bbb46177bd504b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6598717749215088365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409204844513137355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29dc95f226a807488c55bec08341bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winText: {fileID: 4305391590921331657}
 --- !u!1 &8182814337287629194
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,11 +687,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8797519146867458391, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-        type: 3}
-      propertyPath: m_Actions
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a125c20679f4f8f41bc6ccf9f536c7e4, type: 3}
