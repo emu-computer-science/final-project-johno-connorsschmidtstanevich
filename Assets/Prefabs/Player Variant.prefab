@@ -372,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825900944684749975}
   - component: {fileID: 3996587618024171709}
+  - component: {fileID: 4214555265038463938}
   m_Layer: 12
   m_Name: Hurtbox
   m_TagString: Hurtbox
@@ -419,6 +420,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 64, y: 64}
   m_EdgeRadius: 0
+--- !u!114 &4214555265038463938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106890803954558448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c865fb4d9df240edb5f33c8dc70591fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 4409204844513137355}
 --- !u!1 &8182814337287629194
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8381682396377128796}
   - component: {fileID: 2163653175940840090}
+  - component: {fileID: 8244032620093403802}
   m_Layer: 12
   m_Name: Hitbox
   m_TagString: Hitbox
@@ -629,7 +644,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8478652033054185824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -648,6 +663,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 80, y: 32}
   m_EdgeRadius: 0
+--- !u!114 &8244032620093403802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478652033054185824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08da0fa1f6e444e5b4ab41bb70ef0447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 4409204844513137344}
 --- !u!1001 &1724180457383558622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,12 +775,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a125c20679f4f8f41bc6ccf9f536c7e4, type: 3}
---- !u!20 &4820590453961813303 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+--- !u!114 &4409204844513137344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3088660706592517918, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
     type: 3}
   m_PrefabInstance: {fileID: 1724180457383558622}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409204844513137355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbea5791fae13d4b994e93e3fef942a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4409204844513137350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3088660706592517912, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
@@ -762,6 +796,12 @@ Transform:
 --- !u!1 &4409204844513137355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3088660706592517909, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724180457383558622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &4820590453961813303 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
     type: 3}
   m_PrefabInstance: {fileID: 1724180457383558622}
   m_PrefabAsset: {fileID: 0}
