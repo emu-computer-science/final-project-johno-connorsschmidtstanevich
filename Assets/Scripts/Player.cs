@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rb;
 
     private Animator _animator;
-    private AnimatorStateInfo _animatorState;
+    private AnimatorStateInfo AnimatorState => _animator.GetCurrentAnimatorStateInfo(0);
     private Collider2D _collider;
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _animatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _input = GetComponent<PlayerInput>();
         _sprites = GetComponentsInChildren<SpriteRenderer>();
         HitBox = GetComponentsInChildren<Collider2D>()[1];
@@ -148,19 +147,20 @@ public class Player : MonoBehaviour
     public void OnAttack(InputValue button)
     {
         Debug.Log("Attack");
-        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Attack);
+        if(AnimatorState.IsName("Idle") || AnimatorState.IsName("Running")) _animator.SetTrigger(Attack);
     }
 
     public void OnGrapple(InputValue button)
     {
         Debug.Log("Grapple");
-        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Grapple);
+        Debug.Log(AnimatorState.IsName("Idle"));
+        if(AnimatorState.IsName("Idle") || AnimatorState.IsName("Running")) _animator.SetTrigger(Grapple);
     }
 
     public void OnTaunt(InputValue button)
     {
         Debug.Log("Taunt");
-        if(_animatorState.IsName("Idle") || _animatorState.IsName("Running") || _animatorState.IsName("Jumping") && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
+        if((AnimatorState.IsName("Idle") || AnimatorState.IsName("Running") || AnimatorState.IsName("Jumping")) && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
     // Update is called once per frame
