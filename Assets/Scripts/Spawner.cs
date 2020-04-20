@@ -15,5 +15,9 @@ public class Spawner : MonoBehaviour
         Debug.Log($"Player {player.playerIndex + 1} has joined!");
         player.transform.position = spawnPoints[player.playerIndex];
         player.gameObject.GetComponentsInChildren<SpriteRenderer>()[1].color = playerColors[player.playerIndex];
+        foreach (SpriteRenderer spriteRenderer in player.GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.sortingOrder = -player.playerIndex;
+        }
     }
 }
