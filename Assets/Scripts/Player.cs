@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
 
     public int HitStun { get; private set; }
 
+    public Direction LastDirection { get; private set; }
+
     public Vector2 LungeDirection
     {
         get
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private enum Direction
+    public enum Direction
     {
         LEFT = -1,
         RIGHT = 1,
@@ -100,7 +102,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public Vector2 ThrowDirection => new Vector2(GetComponentInChildren<SpriteRenderer>().flipX?1:-1, 1);
+    public Vector2 ThrowDirection => new Vector2(-(int)LastDirection, 1);
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -126,6 +128,7 @@ public class Player : MonoBehaviour
         _sprites = GetComponentsInChildren<SpriteRenderer>();
         HitBox = GetComponentsInChildren<Collider2D>()[1];
         HurtBox = GetComponentsInChildren<Collider2D>()[2];
+        LastDirection = Direction.RIGHT;
     }
 
     public void OnJump(InputValue button)
@@ -183,6 +186,9 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+
+        if (new List<Direction>(new[] {Direction.LEFT, Direction.RIGHT}).Contains(Facing))
+            LastDirection = Facing;
 
         if (HitStun>0) HitStun--;
     }
