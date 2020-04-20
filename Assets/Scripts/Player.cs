@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float maxSpeed;
     [FormerlySerializedAs("turnMult")] public float turnMultiplier = 5.0f;
     public float jumpForce;
-    public float throwStrength = 100;
+    public float throwStrength;
     
     [Header("Set Dynamically")] public float speed;
     

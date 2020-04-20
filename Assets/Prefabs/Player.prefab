@@ -205,6 +205,9 @@ MonoBehaviour:
   maxSpeed: 1000000
   turnMultiplier: 5
   jumpForce: 112
+  throwStrength: 250
+  taunt: {fileID: 8300000, guid: ef86d19350955b74b81ff8241cd31ec5, type: 3}
+  hurt: {fileID: 8300000, guid: 8d5ea55366df4dc4aa2c8182bed32238, type: 3}
   speed: 0
 --- !u!114 &-5934422033983741942
 MonoBehaviour:
