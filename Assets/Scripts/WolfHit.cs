@@ -9,6 +9,8 @@ public class WolfHit : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<PlayerInput>().currentActionMap.Disable();
+        animator.GetComponent<AudioSource>().clip = animator.GetComponent<Player>().hurt;
+        animator.GetComponent<AudioSource>().Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
