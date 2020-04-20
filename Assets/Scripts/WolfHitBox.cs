@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class WolfHitBox : MonoBehaviour
@@ -22,6 +22,6 @@ public class WolfHitBox : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-                if(other.gameObject.CompareTag("Hurtbox")) Debug.Log($"Hit {other.gameObject.name}");
+                if(other.gameObject.CompareTag("Hurtbox")) Debug.Log($"Hit {other.GetComponent<HurtBox>().parent.name}");
         }
 }
