@@ -54,23 +54,6 @@ public class Player : MonoBehaviour
             return new Vector2(_rb.velocity.x, jumpForce);
         }
     }
-    
-    /**
-     * Checks whether the player is grounded.
-     */
-    private bool IsGrounded
-    {
-        get
-        {
-            if (_isGrounded)
-            {
-                _isGrounded = false;
-                return true;
-            }
-
-            return false;
-        }
-    }
 
     private enum Direction
     {
@@ -149,7 +132,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Jump");
         _jumping = button.Get<float>() >= 0.9f;
-        if (_jumping && IsGrounded)
+        if (_jumping && _isGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
