@@ -171,6 +171,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3810930059467106956, guid: 15ebaed974564ac49acb7ff73a1ab305,
+        type: 3}
+      propertyPath: m_UseOneWay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810930059467106956, guid: 15ebaed974564ac49acb7ff73a1ab305,
+        type: 3}
+      propertyPath: m_UseOneWayGrouping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3810930060275907589, guid: 15ebaed974564ac49acb7ff73a1ab305,
         type: 3}
       propertyPath: m_LocalPosition.x
