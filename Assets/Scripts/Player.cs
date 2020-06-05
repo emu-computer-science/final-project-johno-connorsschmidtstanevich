@@ -108,6 +108,9 @@ public class Player : MonoBehaviour
 
     public Vector2 ThrowDirection => new Vector2(-(int)LastDirection, 1);
 
+    /**
+     * Sets your grounded flag to true while you are touching a tile from above.
+     */
     private void OnCollisionStay2D(Collision2D other)
     {
         foreach (var contact in other.contacts)
@@ -163,7 +166,9 @@ public class Player : MonoBehaviour
         if((AnimatorState.IsName("Idle") || AnimatorState.IsName("Running") || AnimatorState.IsName("Jumping")) && button.Get<float>() >= 0.9f) _animator.SetTrigger(Taunt);
     }
 
-    // Update is called once per frame
+    /**
+     * Updates horizontal velocity on each frame based on the joystick position.
+     */
     private void Update()
     {
         float deltaX = _input.currentActionMap.FindAction("Movement").ReadValue<float>();
@@ -177,6 +182,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Sets variables used for animations, and updates the sprite directions.
+     */
     private void LateUpdate()
     {
         _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
@@ -201,6 +209,9 @@ public class Player : MonoBehaviour
         if (HitStun>0) HitStun--;
     }
 
+    /**
+     * If your speed is over the maximum, it gradually reduces your speed.
+     */
     private void FixedUpdate()
     {
         speed = _rb.velocity.x;
