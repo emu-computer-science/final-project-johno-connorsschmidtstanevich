@@ -5,15 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/_PhysicsTestRoom.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 65b7e3502ce134645a5ce82d3b26601f
   - enabled: 1
+    path: Assets/Scenes/OptionsMenu.unity
+    guid: f8a83798ab40e494b977fd81a51c10a8
+  - enabled: 1
+    path: Assets/Scenes/CreditsMenu.unity
+    guid: c1a0715b53a0abb4ba7435bddb7e0722
+  - enabled: 1
     path: Assets/Scenes/Yeet-Them-All.unity
     guid: cef545281fc4f62458c5e6474ba4210d
+  - enabled: 0
+    path: Assets/Scenes/_PhysicsTestRoom.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Scenes/_TerrainGenerationTestRoom.unity
     guid: 792b2951fda739149a88fb8c7e296876

@@ -5,9 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public void playGame()
+    public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Yeet-Them-All");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OptionsMenu()
+    {
+        Debug.Log("Options");
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
+    public void Credits()
+    {
+        Debug.Log("Credits");
+        SceneManager.LoadScene("CreditsMenu");
     }
 
     public void QuitGame()
