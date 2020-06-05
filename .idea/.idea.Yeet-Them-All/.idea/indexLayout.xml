@@ -9,15 +9,15 @@
       <Path>Library/PackageCache/com.unity.2d.tilemap.extras@e9955e7528</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.2.16</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.0</Path>
-      <Path>Library/PackageCache/com.unity.ide.rider@2.0.2</Path>
+      <Path>Library/PackageCache/com.unity.ide.rider@2.0.5</Path>
       <Path>Library/PackageCache/com.unity.ide.vscode@1.1.4</Path>
-      <Path>Library/PackageCache/com.unity.inputsystem@1.0.0-preview.7</Path>
+      <Path>Library/PackageCache/com.unity.inputsystem@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.mathematics@1.1.0</Path>
       <Path>Library/PackageCache/com.unity.render-pipelines.core@7.1.8</Path>
       <Path>Library/PackageCache/com.unity.shadergraph@7.1.8</Path>
-      <Path>Library/PackageCache/com.unity.test-framework@1.1.11</Path>
+      <Path>Library/PackageCache/com.unity.test-framework@1.1.14</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
-      <Path>Library/PackageCache/com.unity.timeline@1.2.13</Path>
+      <Path>Library/PackageCache/com.unity.timeline@1.2.14</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
