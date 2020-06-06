@@ -11,7 +11,6 @@ public class Taunt : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<AudioSource>().clip = tauntSound;
-        animator.GetComponent<AudioSource>().time = 0.3f;
         animator.GetComponent<AudioSource>().Play();
         animator.GetComponent<Rigidbody2D>().simulated = false;
         animator.GetComponent<PlayerInput>().currentActionMap.Disable();
