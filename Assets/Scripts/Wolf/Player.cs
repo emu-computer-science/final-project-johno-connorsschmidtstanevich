@@ -16,10 +16,6 @@ public class Player : MonoBehaviour
     public float jumpForce;
     public float throwStrength;
     
-    [Header("Sound Effects")]
-    public AudioClip taunt;
-    public AudioClip hurt;
-    
     [Header("Set Dynamically")] public float speed;
     
     private Rigidbody2D _rb;

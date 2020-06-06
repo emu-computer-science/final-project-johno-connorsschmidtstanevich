@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Taunt : StateMachineBehaviour
 {
+    [Header("Set in Inspector")] public AudioClip tauntSound;
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<AudioSource>().clip = animator.GetComponent<Player>().taunt;
+        animator.GetComponent<AudioSource>().clip = tauntSound;
         animator.GetComponent<AudioSource>().time = 0.3f;
         animator.GetComponent<AudioSource>().Play();
         animator.GetComponent<Rigidbody2D>().simulated = false;

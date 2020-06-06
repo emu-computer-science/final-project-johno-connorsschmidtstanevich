@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 
 public class WolfHit : StateMachineBehaviour
 {
+    [Header("Set in Inspector")] public AudioClip hurtSound;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<PlayerInput>().currentActionMap.Disable();
-        animator.GetComponent<AudioSource>().clip = animator.GetComponent<Player>().hurt;
+        animator.GetComponent<AudioSource>().clip = hurtSound;
         animator.GetComponent<AudioSource>().Play();
     }
 
