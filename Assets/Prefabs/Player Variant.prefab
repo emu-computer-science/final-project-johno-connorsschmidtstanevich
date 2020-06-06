@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6635240708371446971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409204844513137355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4e62a973823ed4bbb46177bd504b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-6598717749215088365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +643,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1356037426139890766, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 3927051789112617533, guid: 25e6e6e8727dbb348b2932ce14ec9fb8,
+        type: 2}
     - target: {fileID: 2322329453706530030, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
         type: 3}
       propertyPath: m_Layer
@@ -747,15 +741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a125c20679f4f8f41bc6ccf9f536c7e4, type: 3}
---- !u!20 &4820590453961813303 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1724180457383558622}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4409204844513137350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3088660706592517912, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724180457383558622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &4820590453961813303 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6128178117854630121, guid: a125c20679f4f8f41bc6ccf9f536c7e4,
     type: 3}
   m_PrefabInstance: {fileID: 1724180457383558622}
   m_PrefabAsset: {fileID: 0}
