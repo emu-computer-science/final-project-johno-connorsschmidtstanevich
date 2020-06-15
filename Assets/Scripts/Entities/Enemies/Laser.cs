@@ -1,37 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+namespace Entities.Enemies
 {
-    public int speed = 100;
-    public float timeLeft = 5;
-    private Rigidbody2D _rb;
-
-    private void Awake()
+    public class Laser : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = Vector2.left * speed;
-        StartCoroutine(LaserTimer(timeLeft));
-    }
+        public int speed = 100;
+        public float timeLeft = 5;
+        private Rigidbody2D _rb;
 
-    IEnumerator LaserTimer(float s)
-    {
-        yield return new WaitForSeconds(s);
-        Destroy(gameObject);
-    }
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _rb.velocity = Vector2.left * speed;
+            StartCoroutine(LaserTimer(timeLeft));
+        }
 
-    // void Update()
-    // {
-    //     transform.position += -transform.right * Time.deltaTime * speed;
-    //
-    //     timeLeft -= Time.deltaTime;
-    //     if(timeLeft <= 0)
-    //         Destroy(gameObject);
-    // }
+        IEnumerator LaserTimer(float s)
+        {
+            yield return new WaitForSeconds(s);
+            Destroy(gameObject);
+        }
+
+        // void Update()
+        // {
+        //     transform.position += -transform.right * Time.deltaTime * speed;
+        //
+        //     timeLeft -= Time.deltaTime;
+        //     if(timeLeft <= 0)
+        //         Destroy(gameObject);
+        // }
     
     
 
 
+    }
 }

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JoinScreen : MonoBehaviour
+namespace Gameplay
 {
-    private Canvas _canvas;
-
-    private void Awake()
+    public class JoinScreen : MonoBehaviour
     {
-        _canvas = GetComponent<Canvas>();
-    }
+        private Canvas _canvas;
 
-    private void OnPlayerJoined(PlayerInput player)
-    {
-        _canvas.enabled = false;
+        private void Awake()
+        {
+            _canvas = GetComponent<Canvas>();
+        }
+
+        private void OnPlayerJoined(PlayerInput player)
+        {
+            _canvas.enabled = false;
+        }
     }
 }

@@ -1,14 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HurtBox : MonoBehaviour
+namespace Entities
 {
-        public GameObject parent;
-
-        private Collider2D _collider;
-
-        private void Awake()
+        public class HurtBox : MonoBehaviour
         {
-                _collider = GetComponent<Collider2D>();
+                public GameObject parent;
+
+                private Collider2D _collider;
+
+                private void Awake()
+                {
+                        _collider = GetComponent<Collider2D>();
+                }
         }
 }
