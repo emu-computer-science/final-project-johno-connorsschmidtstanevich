@@ -454,6 +454,7 @@ MonoBehaviour:
   Foreground: {fileID: 1511880480}
   Background: {fileID: 503667324}
   FinishLine: {fileID: 0}
+  enemy: {fileID: 0}
   holeY1: 0
   holeY2: 0
   holeY3: 0
@@ -466,6 +467,15 @@ MonoBehaviour:
   holeCooldownY2: 10
   holeCooldownY3: 10
   holeCooldownY4: 10
+  enemyY1: 0
+  enemyY2: 0
+  enemyY3: 0
+  enemyY4: 0
+  enemyCooldownY1: 800
+  enemyCooldownY2: 800
+  enemyCooldownY3: 800
+  enemyCooldownY4: 800
+  Enemy: {fileID: 7036086360130992804, guid: 15b2d0a39d55eb54086528b79bb5e7c5, type: 3}
 --- !u!1 &795118395
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +560,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 617200119636190653, guid: 8db969ee34137ca4fb781d586923bae7,
+        type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 617200119636190653, guid: 8db969ee34137ca4fb781d586923bae7,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 7036086360130992804, guid: 15b2d0a39d55eb54086528b79bb5e7c5,
+        type: 3}
+    - target: {fileID: 5466700852396290155, guid: 8db969ee34137ca4fb781d586923bae7,
+        type: 3}
+      propertyPath: m_UseOneWay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466700852396290155, guid: 8db969ee34137ca4fb781d586923bae7,
+        type: 3}
+      propertyPath: m_UseOneWayGrouping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466700853204788962, guid: 8db969ee34137ca4fb781d586923bae7,
         type: 3}
       propertyPath: m_LocalPosition.x

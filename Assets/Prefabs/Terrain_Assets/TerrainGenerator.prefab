@@ -152,6 +152,7 @@ MonoBehaviour:
   Foreground: {fileID: 5466700852396290149}
   Background: {fileID: 5466700852217232906}
   FinishLine: {fileID: 8415874988507076649}
+  enemy: {fileID: 7036086360130992804, guid: 15b2d0a39d55eb54086528b79bb5e7c5, type: 3}
   holeY1: 0
   holeY2: 0
   holeY3: 0
@@ -164,6 +165,15 @@ MonoBehaviour:
   holeCooldownY2: 10
   holeCooldownY3: 10
   holeCooldownY4: 10
+  enemyY1: 0
+  enemyY2: 0
+  enemyY3: 0
+  enemyY4: 0
+  enemyCooldownY1: 800
+  enemyCooldownY2: 800
+  enemyCooldownY3: 800
+  enemyCooldownY4: 800
+  Enemy: {fileID: 0}
 --- !u!1001 &9168972344176335591
 PrefabInstance:
   m_ObjectHideFlags: 0

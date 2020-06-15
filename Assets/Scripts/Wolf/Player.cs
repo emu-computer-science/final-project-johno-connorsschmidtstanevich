@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     
     [Header("Set Dynamically")] public float speed;
     
+    public float Velocity => _rb.velocity.x;
+
     private Rigidbody2D _rb;
 
     private Animator _animator;
@@ -53,7 +55,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return new Vector2(_rb.velocity.x, jumpForce);
+            return new Vector2(Mathf.Clamp(50, Mathf.Abs(Velocity), 150) * (int)LastDirection, jumpForce);
         }
     }
 
@@ -210,11 +212,11 @@ public class Player : MonoBehaviour
      */
     private void FixedUpdate()
     {
-        speed = _rb.velocity.x;
-        if (Mathf.Abs(speed) > maxSpeed)
+        // speed = _rb.velocity.x;
+        if (Mathf.Abs(Velocity) > maxSpeed)
         {
             Vector2 targetSpeed = new Vector2(maxSpeed, 0.0f);
-            _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(speed, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
+            _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(Velocity, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
         }
     }
     
