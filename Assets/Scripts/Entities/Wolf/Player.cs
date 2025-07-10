@@ -32,9 +32,9 @@ namespace Entities.Wolf
         private float _joyPosX;
         private bool _jumping;
         private PlayerInput _input;
-        private SpriteRenderer[] _sprites;
+        private SpriteRenderer _sprite;
 
-        public SpriteRenderer[] Sprites => _sprites;
+        public SpriteRenderer[] Sprites { get; private set; }
 
         public Collider2D HitBox { get; private set; }
 
@@ -70,8 +70,7 @@ namespace Entities.Wolf
             get
             {
                 if (_joyPosX > 0) return Direction.RIGHT;
-                if (_joyPosX < 0) return Direction.LEFT;
-                return Direction.NONE;
+                return _joyPosX < 0 ? Direction.LEFT : Direction.NONE;
             }
         }
     
@@ -128,7 +127,8 @@ namespace Entities.Wolf
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _input = GetComponent<PlayerInput>();
-            _sprites = GetComponentsInChildren<SpriteRenderer>();
+            _sprite = GetComponent<SpriteRenderer>();
+            Sprites = GetComponentsInChildren<SpriteRenderer>();
             HitBox = GetComponentsInChildren<Collider2D>()[1];
             HurtBox = GetComponentsInChildren<Collider2D>()[2];
             LastDirection = Direction.RIGHT;
@@ -187,7 +187,18 @@ namespace Entities.Wolf
             _animator.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
             _animator.SetBool(Grounded, _isGrounded);
             if (Math.Abs(_rb.velocity.y) > 0.05f) _isGrounded = false;
-            foreach (var spriteRenderer in _sprites)
+
+            switch (Facing)
+            {
+                case Direction.LEFT:
+                    _sprite.flipX = true;
+                    break;
+                case Direction.RIGHT:
+                    _sprite.flipX = false;
+                    break;
+            }
+            
+            foreach (var spriteRenderer in Sprites)
             {
                 switch (Facing)
                 {
@@ -212,11 +223,9 @@ namespace Entities.Wolf
         private void FixedUpdate()
         {
             // speed = _rb.velocity.x;
-            if (Mathf.Abs(Velocity) > maxSpeed)
-            {
-                Vector2 targetSpeed = new Vector2(maxSpeed, 0.0f);
-                _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(Velocity, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
-            }
+            if (!(Mathf.Abs(Velocity) > maxSpeed)) return;
+            Vector2 targetSpeed = new Vector2(maxSpeed, 0.0f);
+            _rb.velocity = new Vector2(Vector2.Lerp( new Vector2(Velocity, 0), GetDirection * targetSpeed, 0.75f).x, _rb.velocity.y);
         }
     
     

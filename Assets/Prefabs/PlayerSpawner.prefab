@@ -113,12 +113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48b08fbc28d98f4a8814331ca27647e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerColors:
+  playerColors:
   - {r: 192, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 192, a: 1}
   - {r: 0, g: 192, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  SpawnPoints:
+  spawnPoints:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}

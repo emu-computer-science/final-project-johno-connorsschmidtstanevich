@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -292,6 +293,11 @@ PrefabInstance:
       propertyPath: m_NotificationBehavior
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2357469787397304624, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: m_FixedNumberOfSplitScreens
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2357469787397304625, guid: f09bf35113702814195fd483f183f897,
         type: 3}
       propertyPath: m_Name
@@ -351,6 +357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
+        type: 3}
+      propertyPath: dynamicSpawnPoints.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5321516304097505250, guid: f09bf35113702814195fd483f183f897,
         type: 3}

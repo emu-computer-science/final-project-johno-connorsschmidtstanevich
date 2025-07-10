@@ -11,7 +11,7 @@ namespace Gameplay
         [Header("Set in Inspector")]
         public float killPlane;
     
-        private IEnumerable<PlayerInput> _players => PlayerInput.all;
+        private static IEnumerable<PlayerInput> Players => PlayerInput.all;
         private Spawner _spawner;
 
         private int PlayerNumber(Player player)
@@ -26,30 +26,26 @@ namespace Gameplay
 
         private void FixedUpdate()
         {
-            foreach (var player in _players)
+            foreach (var player in Players)
             {
                 if (player.inputIsActive && player.transform.position.y < killPlane) StartCoroutine(Respawn(player));
             }
         }
 
-        IEnumerator Respawn(PlayerInput player)
+        private IEnumerator Respawn(PlayerInput player)
         {
             player.DeactivateInput();
-            player.GetComponent<Rigidbody2D>().simulated = false;
-            foreach (var sprite in player.GetComponent<Player>().Sprites)
-            {
-                sprite.enabled = false;
-            }
+            Rigidbody2D playerRigidBody2D = player.GetComponent<Rigidbody2D>();
+            playerRigidBody2D.simulated = false;
+            SpriteRenderer playerSprite = player.GetComponent<Player>().GetComponent<SpriteRenderer>();
+            playerSprite.enabled = false;
             Debug.Log($"Player {player.playerIndex + 1} has died!");
             yield return new WaitForSecondsRealtime(3);
             player.ActivateInput();
-            player.gameObject.transform.position = _spawner.spawnPoints[player.playerIndex];
-            foreach (var sprite in player.GetComponent<Player>().Sprites)
-            {
-                sprite.enabled = true;
-            }
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            player.GetComponent<Rigidbody2D>().simulated = true;
+            player.gameObject.transform.position = _spawner.spawnPoints[player.playerIndex];  // Moves the player back to their spawn point
+            player.GetComponent<SpriteRenderer>().enabled = true;
+            playerRigidBody2D.velocity = Vector2.zero;
+            playerRigidBody2D.simulated = true;
         }
     }
 }
